@@ -7,6 +7,27 @@ const SideBar = () => {
             <h3 className="text-xl font-bold text-white">Filters</h3>
 
             <div className="space-y-4">
+              <h4 className="text-sm font-semibold text-white/80">Categories</h4>
+              <div className="space-y-3">
+                {["Movies", "People"].map((category) => (
+                  <label
+                    key={category}
+                    className="flex items-center space-x-3 group"
+                  >
+                    <input
+                      type="radio"
+                      name="category"
+                      className="form-radio h-5 w-5 border-white/30 bg-white/10 text-indigo-400 focus:ring-indigo-400 focus:ring-offset-0"
+                    />
+                    <span className="text-sm text-white/90 group-hover:text-white transition-colors">
+                      {category}
+                    </span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            <div className="space-y-4">
               <h4 className="text-sm font-semibold text-white/80">Genres</h4>
               <div className="space-y-3">
                 {["Action", "Comedy", "Drama", "Horror", "Sci-Fi"].map(
@@ -29,9 +50,31 @@ const SideBar = () => {
             </div>
 
             <div className="space-y-4">
+              <h4 className="text-sm font-semibold text-white/80">People Filters</h4>
+              <div className="space-y-3">
+                {["Actors", "Directors", "Writers", "Producers"].map(
+                  (role) => (
+                    <label
+                      key={role}
+                      className="flex items-center space-x-3 group"
+                    >
+                      <input
+                        type="checkbox"
+                        className="form-checkbox h-5 w-5 rounded border-white/30 bg-white/10 text-indigo-400 focus:ring-indigo-400 focus:ring-offset-0"
+                      />
+                      <span className="text-sm text-white/90 group-hover:text-white transition-colors">
+                        {role}
+                      </span>
+                    </label>
+                  )
+                )}
+              </div>
+            </div>
+
+            <div className="space-y-4">
               <h4 className="text-sm font-semibold text-white/80">Sort By</h4>
               <div className="space-y-3">
-                {["Popularity", "Rating", "Release Date", "Title"].map(
+                {["Popularity", "Rating", "Release Date", "Title", "Name"].map(
                   (sort) => (
                     <label
                       key={sort}
@@ -72,6 +115,12 @@ const SideBar = () => {
                 className="block text-sm text-white/80 hover:text-white transition-colors py-2 px-3 rounded-lg hover:bg-white/10"
               >
                 Upcoming Releases
+              </a>
+              <a
+                href="/popular-people"
+                className="block text-sm text-white/80 hover:text-white transition-colors py-2 px-3 rounded-lg hover:bg-white/10"
+              >
+                Popular People
               </a>
             </div>
           </div>

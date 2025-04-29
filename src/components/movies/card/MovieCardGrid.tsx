@@ -8,13 +8,13 @@ const MovieCardGrid: React.FC = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
   useEffect(() => {
     setIsLoading(true);
     apiClient
       .get("/discover/movie")
       .then((response) => {
         setMovies(response.data.results);
+        console.log(response.data.results);
         setIsLoading(false);
       })
       .catch((error) => {

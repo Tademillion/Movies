@@ -1,15 +1,17 @@
+import { Link } from 'react-router-dom';
+
 const Navbar = () => {
   return (
     <div>
       <nav className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 py-4 fixed top-0 w-full z-50 shadow-lg">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between">
-            <a
-              href="/"
+            <Link
+              to="/"
               className="text-2xl font-bold text-white hover:text-indigo-200 transition-colors duration-300"
             >
               CineView
-            </a>
+            </Link>
 
             <div className="flex-1 max-w-xl mx-8">
               <div className="relative">
@@ -35,30 +37,30 @@ const Navbar = () => {
             </div>
 
             <div className="flex items-center space-x-6">
-              <a
-                href="/movies"
+              <Link
+                to="/movies"
                 className="text-white/90 hover:text-white font-medium transition-colors duration-300"
               >
                 Movies
-              </a>
-              <a
-                href="/tv"
+              </Link>
+              <Link
+                to="/tv"
                 className="text-white/90 hover:text-white font-medium transition-colors duration-300"
               >
                 TV Shows
-              </a>
-              <a
-                href="/people"
+              </Link>
+              <Link
+                to="/people"
                 className="text-white/90 hover:text-white font-medium transition-colors duration-300"
               >
                 People
-              </a>
-              <a
-                href="/mylist"
+              </Link>
+              <Link
+                to="/mylist"
                 className="text-white/90 hover:text-white font-medium transition-colors duration-300"
               >
                 My List
-              </a>
+              </Link>
             </div>
           </div>
         </div>
