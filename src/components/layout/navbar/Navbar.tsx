@@ -44,7 +44,7 @@ const Navbar = () => {
                 Movies
               </a>
               <a
-                href="/tv"
+                href="/tv-shows"
                 className="text-white/90 hover:text-white font-medium transition-colors duration-300"
               >
                 TV Shows

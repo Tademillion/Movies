@@ -6,7 +6,8 @@ import MovieCardGrid from "./components/movies/card/MovieCardGrid";
 import PeoplePage from "./components/people/PeoplePage";
 import PeopleGrid from "./components/people/grid/PeopleGrid";
 import ErrorPage from "./components/common/ErrorPage";
-import TVShowsPage from './components/tv/TVShowsPage';
+import TVShowsPage from "./components/tv/TVShowsPage";
+import TVShowGrid from "./components/tv/grid/TVShowGrid";
 
 const MoviesPage = () => {
   return (

@@ -1,8 +1,8 @@
-import { FC, useEffect, useState } from 'react';
-import TVShowCard from '../card/TVShowCard';
-import apiClient from '../../../services/apiClient';
-import LoadingSpinner from '../../common/LoadingSpinner';
-import ErrorPage from '../../common/ErrorPage';
+import { FC, useEffect, useState } from "react";
+import TVShowCard from "../card/TVShowCard";
+import apiClient from "../../../services/apiClient";
+import LoadingSpinner from "../../common/LoadingSpinner";
+import ErrorPage from "../../common/ErrorPage";
 
 interface TVShow {
   id: number;
@@ -13,27 +13,23 @@ interface TVShow {
   overview: string;
 }
 
-const TVShowGrid: FC = () => {
+const TVShowGrid = () => {
   const [tvShows, setTVShows] = useState<TVShow[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchTVShows = async () => {
-      try {
-        setIsLoading(true);
-        setError(null);
-        const response = await apiClient.get('tv/popular');
+    setIsLoading(true);
+    apiClient
+      .get("tv/popular")
+      .then((response) => {
+        console.log(response.data.results);
         setTVShows(response.data.results);
-      } catch (err) {
-        console.error('Error fetching TV shows:', err);
-        setError(err instanceof Error ? err.message : 'Failed to fetch TV shows');
-      } finally {
         setIsLoading(false);
-      }
-    };
-
-    fetchTVShows();
+      })
+      .catch((error) => {
+        setError(error);
+      });
   }, []);
 
   if (isLoading) {
@@ -53,7 +49,7 @@ const TVShowGrid: FC = () => {
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-6">
       {tvShows.map((show) => (
         <TVShowCard
           key={show.id}
@@ -69,4 +65,4 @@ const TVShowGrid: FC = () => {
   );
 };
 
-export default TVShowGrid; 
+export default TVShowGrid;

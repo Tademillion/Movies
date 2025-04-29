@@ -1,7 +1,7 @@
-import { FC, useState } from 'react';
-import TVShowGrid from './grid/TVShowGrid';
+import { FC, useState } from "react";
+import TVShowGrid from "./grid/TVShowGrid";
 
-const TVShowsPage: FC = () => {
+const TVShowsPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = 10; // This would come from your API
 
@@ -28,7 +28,9 @@ const TVShowsPage: FC = () => {
           Page {currentPage} of {totalPages}
         </span>
         <button
-          onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+          onClick={() =>
+            setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+          }
           disabled={currentPage === totalPages}
           className="px-6 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
         >
@@ -39,4 +41,4 @@ const TVShowsPage: FC = () => {
   );
 };
 
-export default TVShowsPage; 
+export default TVShowsPage;

@@ -35,23 +35,16 @@ const PeopleGrid: FC = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchPeople = async () => {
-      try {
-        setIsLoading(true);
-        setError(null);
-        const response = await apiClient.get("person/popular");
-        console.log(response.data.results);
-
-        setPeople(response.data.results);
-      } catch (err) {
-        console.error("Error fetching people:", err);
-        setError(err instanceof Error ? err.message : "Failed to fetch people");
-      } finally {
+    setIsLoading(true);
+    apiClient
+      .get("person/popular")
+      .then((Response) => {
+        setPeople(Response.data.results);
         setIsLoading(false);
-      }
-    };
-
-    fetchPeople();
+      })
+      .catch((error) => {
+        setError(error);
+      });
   }, []);
   if (error) {
     return <ErrorPage errorType="404" message={error} />;
