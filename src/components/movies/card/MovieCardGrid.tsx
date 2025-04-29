@@ -4,7 +4,7 @@ import MovieCard from "./MovieCard";
 import LoadingSpinner from "../../common/LoadingSpinner";
 import apiClient from "../../../services/apiClient";
 
-const MovieCardGrid: React.FC = () => {
+const MovieCardGrid = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);

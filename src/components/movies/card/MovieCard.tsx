@@ -7,7 +7,7 @@ interface MovieCardProps {
   onClick?: () => void;
 }
 
-const MovieCard: React.FC<MovieCardProps> = ({ movie, onClick }) => {
+const MovieCard = ({ movie, onClick }: MovieCardProps) => {
   return (
     <div
       onClick={onClick}
@@ -29,12 +29,8 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie, onClick }) => {
       {/* Movie Info Overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
         <div className="absolute bottom-0 left-0 right-0 p-4">
-          <h3 className="mb-1 text-lg font-bold text-white">
-            {movie.title}
-          </h3>
-          <p className="text-sm text-gray-300 line-clamp-2">
-            {movie.overview}
-          </p>
+          <h3 className="mb-1 text-lg font-bold text-white">{movie.title}</h3>
+          <p className="text-sm text-gray-300 line-clamp-2">{movie.overview}</p>
           <div className="mt-2 flex items-center text-sm text-gray-300">
             <span>{new Date(movie.release_date).getFullYear()}</span>
           </div>

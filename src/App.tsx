@@ -4,6 +4,7 @@ import Navbar from "./components/layout/navbar/Navbar";
 import Footer from "./components/layout/footer/Footer";
 import MovieCardGrid from "./components/movies/card/MovieCardGrid";
 import PeoplePage from "./components/people/PeoplePage";
+import PeopleGrid from "./components/people/grid/PeopleGrid";
 
 const MoviesPage = () => {
   return (
@@ -41,7 +42,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<MoviesPage />} />
                 <Route path="/movies" element={<MoviesPage />} />
-                <Route path="/people" element={<PeoplePage />} />
+                <Route path="/people" element={<PeopleGrid />} />
               </Routes>
             </div>
           </main>
