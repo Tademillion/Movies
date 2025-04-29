@@ -1,34 +1,79 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { TMDB_IMAGE_SIZES } from "../../../constants/api.constants";
 import { PeopleGridProps } from "../grid/PeopleGrid";
 
-interface PeopleCardProps {
-  id: number;
-  name: string;
-  profilePath: string;
-  knownFor: string;
-  popularity: number;
-}
+// interface PeopleCardProps {
+//   id: number;
+//   name: string;
+//   profilePath: string;
+//   knownFor: string;
+//   popularity: number;
+// }
 
 interface PropsPoeple {
   poeple: PeopleGridProps;
 }
-const PeopleCard = ({ poeple }: PropsPoeple) => {
+
+const PeopleCard: FC<PropsPoeple> = ({ poeple }) => {
+  const [hoveredWork, setHoveredWork] = useState<number | null>(null);
+
   return (
     <div className="group relative overflow-hidden rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 transition-all duration-300 hover:scale-105 hover:shadow-lg">
+      {/* Main Profile Image */}
       <div className="aspect-[2/3] relative">
         <img
           src={`${TMDB_IMAGE_SIZES.poster.medium}${poeple.profile_path}`}
           alt={poeple.name}
           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        
+        {/* Known For Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <div className="absolute bottom-0 left-0 right-0 p-4">
+            <h3 className="text-lg font-semibold text-white mb-2">Known For</h3>
+            <div className="space-y-3">
+              {poeple.known_for.slice(0, 3).map((work) => (
+                <div
+                  key={work.id}
+                  className="flex items-start space-x-3 group/item"
+                  onMouseEnter={() => setHoveredWork(work.id)}
+                  onMouseLeave={() => setHoveredWork(null)}
+                >
+                  <div className="w-16 h-24 flex-shrink-0 rounded overflow-hidden">
+                    <img
+                      src={`${TMDB_IMAGE_SIZES.poster.small}${work.poster_path}`}
+                      alt={work.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h4 className="text-sm font-medium text-white truncate">
+                      {work.title}
+                    </h4>
+                    <div className="flex items-center space-x-2 mt-1">
+                      <span className="text-xs text-yellow-400">
+                        {work.vote_average.toFixed(1)}
+                      </span>
+                      <span className="text-xs text-white/60">
+                        {work.vote_count} votes
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
+
+      {/* Person Info */}
       <div className="p-4">
         <h3 className="text-lg font-semibold text-white truncate">
           {poeple.original_name}
         </h3>
-        <p className="text-sm text-white/70 mt-1 truncate">{poeple.knownFor}</p>
+        <p className="text-sm text-white/70 mt-1 truncate">
+          {poeple.known_for_department}
+        </p>
         <div className="flex items-center mt-2">
           <svg
             className="w-4 h-4 text-yellow-400"

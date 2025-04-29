@@ -5,6 +5,7 @@ import Footer from "./components/layout/footer/Footer";
 import MovieCardGrid from "./components/movies/card/MovieCardGrid";
 import PeoplePage from "./components/people/PeoplePage";
 import PeopleGrid from "./components/people/grid/PeopleGrid";
+import ErrorPage from "./components/common/ErrorPage";
 
 const MoviesPage = () => {
   return (
@@ -43,6 +44,7 @@ function App() {
                 <Route path="/" element={<MoviesPage />} />
                 <Route path="/movies" element={<MoviesPage />} />
                 <Route path="/people" element={<PeopleGrid />} />
+                <Route path="*" element={<ErrorPage errorType="404" />} />
               </Routes>
             </div>
           </main>

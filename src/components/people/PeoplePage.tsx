@@ -5,50 +5,6 @@ const PeoplePage: FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = 10; // This would come from your API
 
-  // Mock data with proper image URLs
-  const mockPeople = [
-    {
-      id: 1,
-      name: "Tom Hanks",
-      profilePath:
-        "https://image.tmdb.org/t/p/w500/pQFoyx7rp09CJTAb932F2g8Nlho.jpg",
-      knownFor: "Forrest Gump, Cast Away, Saving Private Ryan",
-      popularity: 8.5,
-    },
-    {
-      id: 2,
-      name: "Meryl Streep",
-      profilePath:
-        "https://image.tmdb.org/t/p/w500/7pyk2xWCQgKkTZ6jO0HxQjWXHwK.jpg",
-      knownFor: "The Devil Wears Prada, Mamma Mia!, Sophie's Choice",
-      popularity: 8.2,
-    },
-    {
-      id: 3,
-      name: "Leonardo DiCaprio",
-      profilePath:
-        "https://image.tmdb.org/t/p/w500/5Brc5dLifH3suIok9BJPXxTfk9z.jpg",
-      knownFor: "Titanic, Inception, The Wolf of Wall Street",
-      popularity: 8.8,
-    },
-    {
-      id: 4,
-      name: "Emma Watson",
-      profilePath:
-        "https://image.tmdb.org/t/p/w500/7Xi7NvYhWbqHVZBi8gXQHvVXxw9.jpg",
-      knownFor: "Harry Potter, Beauty and the Beast, Little Women",
-      popularity: 8.0,
-    },
-    {
-      id: 5,
-      name: "Denzel Washington",
-      profilePath:
-        "https://image.tmdb.org/t/p/w500/khMf0LLhdKXQrBgDSS0QTSVwlIx.jpg",
-      knownFor: "Training Day, The Equalizer, Malcolm X",
-      popularity: 8.3,
-    },
-  ];
-
   return (
     <div className="container mx-auto">
       <div className="flex flex-col items-center mb-12">
