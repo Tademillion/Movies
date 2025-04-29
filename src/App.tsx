@@ -1,20 +1,9 @@
-import { useState } from "react";
-import React from "react";
-// import { MovieCardGrid } from "./components/movies/card";
-import { Movie } from "./types/api.types";
-import MovieCard from "./components/movies/card/MovieCard";
 import SideBar from "./components/layout/sidebar/SideBar";
 import Navbar from "./components/layout/navbar/Navbar";
 import Footer from "./components/layout/footer/Footer";
+import MovieCardGrid from "./components/movies/card/MovieCardGrid";
 
 function App() {
-  const [movies, setMovies] = useState<Movie[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [searchQuery, setSearchQuery] = useState("");
-
-  const handleMovieClick = (movie: Movie) => {
-    console.log("Movie clicked:", movie);
-  };
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
       <Navbar />
@@ -30,10 +19,10 @@ function App() {
               Popular Movies
             </h1>
 
-            <div className="mb-8">
-              <MovieCard />
+            <div>
+              <MovieCardGrid />
             </div>
-            <div className="flex justify-center items-center space-x-4">
+            <div className="flex justify-center items-center space-x-4 mt-5">
               <button className="px-6 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-colors duration-300">
                 Previous
               </button>
