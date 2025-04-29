@@ -3,15 +3,7 @@ import TVShowCard from "../card/TVShowCard";
 import apiClient from "../../../services/apiClient";
 import LoadingSpinner from "../../common/LoadingSpinner";
 import ErrorPage from "../../common/ErrorPage";
-
-interface TVShow {
-  id: number;
-  name: string;
-  poster_path: string;
-  vote_average: number;
-  first_air_date: string;
-  overview: string;
-}
+import { TVShow } from "../../../types/api.types";
 
 const TVShowGrid = () => {
   const [tvShows, setTVShows] = useState<TVShow[]>([]);
@@ -51,15 +43,7 @@ const TVShowGrid = () => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-6">
       {tvShows.map((show) => (
-        <TVShowCard
-          key={show.id}
-          id={show.id}
-          name={show.name}
-          poster_path={show.poster_path}
-          vote_average={show.vote_average}
-          first_air_date={show.first_air_date}
-          overview={show.overview}
-        />
+        <TVShowCard Tv={show} key={show.id} />
       ))}
     </div>
   );

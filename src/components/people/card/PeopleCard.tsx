@@ -1,22 +1,11 @@
-import { FC, useState } from "react";
+import { useState } from "react";
 import { TMDB_IMAGE_SIZES } from "../../../constants/api.constants";
-import { PeopleGridProps } from "../grid/PeopleGrid";
-
-// interface PeopleCardProps {
-//   id: number;
-//   name: string;
-//   profilePath: string;
-//   knownFor: string;
-//   popularity: number;
-// }
-
+import { PeopleGridProps } from "../../../types/api.types";
 interface PropsPoeple {
   poeple: PeopleGridProps;
 }
-
-const PeopleCard: FC<PropsPoeple> = ({ poeple }) => {
+const PeopleCard = ({ poeple }: PropsPoeple) => {
   const [hoveredWork, setHoveredWork] = useState<number | null>(null);
-
   return (
     <div className="group relative overflow-hidden rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 transition-all duration-300 hover:scale-105 hover:shadow-lg">
       {/* Main Profile Image */}
@@ -26,7 +15,6 @@ const PeopleCard: FC<PropsPoeple> = ({ poeple }) => {
           alt={poeple.name}
           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
         />
-        
         {/* Known For Overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
           <div className="absolute bottom-0 left-0 right-0 p-4">

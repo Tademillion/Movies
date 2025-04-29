@@ -19,6 +19,7 @@ const MovieCardGrid = () => {
       })
       .catch((error) => {
         setError(error);
+        setIsLoading(false);
       });
   }, []);
   if (isLoading) {

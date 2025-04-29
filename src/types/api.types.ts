@@ -64,3 +64,39 @@ export interface Genre {
 export interface GenresResponse {
   genres: Genre[];
 } 
+
+// Peoples types
+
+export interface PeopleKnownByProps {
+  id: number;
+  media_type: string;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+  title: string;
+  vote_average: number;
+  vote_count: number;
+}
+export interface PeopleGridProps {
+  id: number;
+  name: string;
+  profile_path: string;
+  known_for: PeopleKnownByProps[];
+  popularity: number;
+  adult: boolean;
+  gender: number;
+  original_name: string;
+  known_for_department: string;
+}
+
+//  the  tv shows
+export interface TVShow {
+  id: number;
+  name: string;
+  poster_path: string;
+  vote_average: number;
+  first_air_date: string;
+  overview: string;
+}

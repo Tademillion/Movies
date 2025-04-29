@@ -40,7 +40,7 @@ function App() {
           {/* Sidebar */}
           <SideBar />
           {/* Main Content Area */}
-          <main className="flex-1 p-8 mt-20 mx-5 bg-white/5 backdrop-blur-sm rounded-xl shadow-2xl border border-white/10">
+          <main className="flex-1 p-8 mt-20 mx-5 bg-red bg-white/5 backdrop-blur-sm rounded-xl shadow-2xl border border-white/10">
             <div className="container mx-auto">
               <Routes>
                 <Route path="/" element={<MoviesPage />} />

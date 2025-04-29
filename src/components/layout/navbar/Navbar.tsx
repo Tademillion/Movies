@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 const Navbar = () => {
   return (
     <div>
@@ -13,8 +11,8 @@ const Navbar = () => {
               CineView
             </a>
 
-            <div className="flex-1 max-w-xl mx-8">
-              <div className="relative">
+            <div className="flex-1 max-w-xl mx-8 ">
+              <div className="relative ">
                 <input
                   type="text"
                   placeholder="Search movies..."
