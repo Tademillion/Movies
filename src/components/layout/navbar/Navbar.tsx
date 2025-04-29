@@ -56,7 +56,7 @@ const Navbar = () => {
                 People
               </a>
               <a
-                href="/mylist"
+                href="/lists"
                 className="text-white/90 hover:text-white font-medium transition-colors duration-300"
               >
                 My List

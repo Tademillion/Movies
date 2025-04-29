@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 import PeopleGrid from "./grid/PeopleGrid";
 
-const PeoplePage: FC = () => {
+const PeoplePage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = 10; // This would come from your API
 

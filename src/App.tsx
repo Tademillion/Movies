@@ -8,6 +8,7 @@ import PeopleGrid from "./components/people/grid/PeopleGrid";
 import ErrorPage from "./components/common/ErrorPage";
 import TVShowsPage from "./components/tv/TVShowsPage";
 import TVShowGrid from "./components/tv/grid/TVShowGrid";
+import ListsPage from './components/lists/ListsPage';
 
 const MoviesPage = () => {
   return (
@@ -45,8 +46,9 @@ function App() {
               <Routes>
                 <Route path="/" element={<MoviesPage />} />
                 <Route path="/movies" element={<MoviesPage />} />
-                <Route path="/people" element={<PeopleGrid />} />
+                <Route path="/people" element={<PeoplePage />} />
                 <Route path="/tv-shows" element={<TVShowsPage />} />
+                <Route path="/lists" element={<ListsPage />} />
                 <Route path="*" element={<ErrorPage errorType="404" />} />
               </Routes>
             </div>
