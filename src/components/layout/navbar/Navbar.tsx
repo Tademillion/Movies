@@ -3,10 +3,10 @@ import React from "react";
 const Navbar = () => {
   return (
     <div>
-      <nav className="bg-gray-800 py-4 fixed top-0 w-full z-3 position-fixed">
+      <nav className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 py-4 fixed top-0 w-full z-50 shadow-lg">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between">
-            <a href="/" className="text-2xl font-bold text-white">
+            <a href="/" className="text-2xl font-bold text-white hover:text-indigo-200 transition-colors duration-300">
               CineView
             </a>
 
@@ -15,12 +15,10 @@ const Navbar = () => {
                 <input
                   type="text"
                   placeholder="Search movies..."
-                  //   value={searchQuery}
-                  //   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full bg-gray-700 text-white rounded-full py-2 px-4 pl-10 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full bg-white/20 backdrop-blur-sm text-white rounded-full py-2 px-4 pl-10 focus:outline-none focus:ring-2 focus:ring-white/50 placeholder-white/70"
                 />
                 <svg
-                  className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400"
+                  className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-white/70"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -36,16 +34,16 @@ const Navbar = () => {
             </div>
 
             <div className="flex items-center space-x-6">
-              <a href="/movies" className="text-gray-300 ">
+              <a href="/movies" className="text-white/90 hover:text-white font-medium transition-colors duration-300">
                 Movies
               </a>
-              <a href="/tv" className="text-gray-300 ">
+              <a href="/tv" className="text-white/90 hover:text-white font-medium transition-colors duration-300">
                 TV Shows
               </a>
-              <a href="/people" className="text-gray-300 ">
+              <a href="/people" className="text-white/90 hover:text-white font-medium transition-colors duration-300">
                 People
               </a>
-              <a href="/mylist" className="text-gray-300 ">
+              <a href="/mylist" className="text-white/90 hover:text-white font-medium transition-colors duration-300">
                 My List
               </a>
             </div>

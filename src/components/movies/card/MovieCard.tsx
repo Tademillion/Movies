@@ -11,14 +11,18 @@ const MovieCard = () => {
     const getMovies = async () => {
       try {
         const response = await apiClient.get("/discover/movie");
+        setIsLoading(true);
         setMovies(response.data.results);
-        console.log(response.data.results);
+        setIsLoading(false);
       } catch (error) {
         console.error("Error fetching movies:", error);
       }
     };
     getMovies();
   }, []);
+  {
+    isLoading && <h2> Loading</h2>;
+  }
 
   return (
     <div className="flex flex-wrap justify-center gap-4 p-4">
