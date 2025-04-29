@@ -1,37 +1,29 @@
 import React, { useEffect, useState } from "react";
-import apiClient from "../../../services/apiClient";
 import { Movie } from "../../../types/api.types";
 import MovieCard from "./MovieCard";
-import MovieCardSkeleton from "./MovieCardSkeleton";
+import LoadingSpinner from "../../common/LoadingSpinner";
+import apiClient from "../../../services/apiClient";
 
 const MovieCardGrid: React.FC = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
   useEffect(() => {
-    const getMovies = async () => {
-      try {
-        const response = await apiClient.get("/discover/movie");
-
+    setIsLoading(true);
+    apiClient
+      .get("/discover/movie")
+      .then((response) => {
         setMovies(response.data.results);
-      } catch (error) {
-        console.error("Error fetching movies:", error);
-        setError(true);
-      }
-    };
-    getMovies();
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        setError(error);
+      });
   }, []);
-
   if (isLoading) {
-    return (
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
-        {[...Array(12)].map((_, index) => (
-          <MovieCardSkeleton key={index} />
-        ))}
-      </div>
-    );
+    return <LoadingSpinner />;
   }
-
   if (error) {
     return (
       <div className="text-center py-8">
@@ -45,7 +37,6 @@ const MovieCardGrid: React.FC = () => {
       </div>
     );
   }
-
   if (movies.length === 0) {
     return (
       <div className="text-center py-8">
@@ -53,7 +44,6 @@ const MovieCardGrid: React.FC = () => {
       </div>
     );
   }
-
   return (
     <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
       {movies.map((movie) => (
