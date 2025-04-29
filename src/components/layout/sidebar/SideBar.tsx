@@ -1,13 +1,15 @@
 const SideBar = () => {
   return (
     <div>
-      <aside className="top-15 sticky w-64 h-screen p-6 bg-gradient-to-b from-indigo-900/90 via-purple-900/90 to-pink-900/90 backdrop-blur-sm border-r border-white/10">
+      <aside className="top-15 sticky w-64 h-auto p-6 bg-gradient-to-b from-indigo-900/90 via-purple-900/90 to-pink-900/90 backdrop-blur-sm border-r border-white/10">
         <div className="space-y-8">
           <div className="space-y-6">
             <h3 className="text-xl font-bold text-white">Filters</h3>
 
             <div className="space-y-4">
-              <h4 className="text-sm font-semibold text-white/80">Categories</h4>
+              <h4 className="text-sm font-semibold text-white/80">
+                Categories
+              </h4>
               <div className="space-y-3">
                 {["Movies", "People"].map((category) => (
                   <label
@@ -50,24 +52,24 @@ const SideBar = () => {
             </div>
 
             <div className="space-y-4">
-              <h4 className="text-sm font-semibold text-white/80">People Filters</h4>
+              <h4 className="text-sm font-semibold text-white/80">
+                People Filters
+              </h4>
               <div className="space-y-3">
-                {["Actors", "Directors", "Writers", "Producers"].map(
-                  (role) => (
-                    <label
-                      key={role}
-                      className="flex items-center space-x-3 group"
-                    >
-                      <input
-                        type="checkbox"
-                        className="form-checkbox h-5 w-5 rounded border-white/30 bg-white/10 text-indigo-400 focus:ring-indigo-400 focus:ring-offset-0"
-                      />
-                      <span className="text-sm text-white/90 group-hover:text-white transition-colors">
-                        {role}
-                      </span>
-                    </label>
-                  )
-                )}
+                {["Actors", "Directors", "Writers", "Producers"].map((role) => (
+                  <label
+                    key={role}
+                    className="flex items-center space-x-3 group"
+                  >
+                    <input
+                      type="checkbox"
+                      className="form-checkbox h-5 w-5 rounded border-white/30 bg-white/10 text-indigo-400 focus:ring-indigo-400 focus:ring-offset-0"
+                    />
+                    <span className="text-sm text-white/90 group-hover:text-white transition-colors">
+                      {role}
+                    </span>
+                  </label>
+                ))}
               </div>
             </div>
 
