@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { Movie } from "../../../types/api.types";
-import MovieCard from "./MovieCard";
-import LoadingSpinner from "../../common/LoadingSpinner";
+import { useEffect, useState } from "react";
 import apiClient from "../../../services/apiClient";
+import { Movie } from "../../../types/api.types";
+import LoadingSpinner from "../../common/LoadingSpinner";
+import MovieCard from "./MovieCard";
 
 const MovieCardGrid = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -45,7 +45,7 @@ const MovieCardGrid = () => {
     );
   }
   return (
-    <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       {movies.map((movie) => (
         <MovieCard key={movie.id} movie={movie} />
       ))}
