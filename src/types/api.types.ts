@@ -108,3 +108,8 @@ export interface TVShow {
   first_air_date: string;
   overview: string;
 }
+ export interface FetchTvShowsRespone{
+  results:TVShow[];
+  total_pages:number,
+  total_results:number
+ }

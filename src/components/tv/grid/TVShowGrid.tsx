@@ -1,28 +1,10 @@
-import { FC, useEffect, useState } from "react";
 import TVShowCard from "../card/TVShowCard";
-import apiClient from "../../../services/apiClient";
 import LoadingSpinner from "../../common/LoadingSpinner";
 import ErrorPage from "../../common/ErrorPage";
-import { TVShow } from "../../../types/api.types";
+import UseTvShows from "../hooks/UseTvShows";
 
 const TVShowGrid = () => {
-  const [tvShows, setTVShows] = useState<TVShow[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    setIsLoading(true);
-    apiClient
-      .get("tv/popular")
-      .then((response) => {
-        console.log(response.data.results);
-        setTVShows(response.data.results);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        setError(error);
-      });
-  }, []);
+  const { error, isLoading, tvShows } = UseTvShows();
 
   if (isLoading) {
     return (

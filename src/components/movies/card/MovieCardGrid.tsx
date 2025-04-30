@@ -1,9 +1,6 @@
-import { useEffect, useState } from "react";
-import apiClient from "../../../services/apiClient";
-import { FetchMovieRespone, Movie } from "../../../types/api.types";
 import LoadingSpinner from "../../common/LoadingSpinner";
-import MovieCard from "./MovieCard";
 import UseMovies from "../Hooks/useMovies";
+import MovieCard from "./MovieCard";
 
 const MovieCardGrid = () => {
   const { Error, movies, isLoading } = UseMovies();
