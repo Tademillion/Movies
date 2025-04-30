@@ -10,7 +10,7 @@ import TVShowsPage from "./components/tv/TVShowsPage";
 import { useState } from "react";
 
 function App() {
-  const [genre, setGenre] = useState<number>();
+  const [genre, setGenre] = useState<number | null>(null);
   return (
     <Router>
       <div className="min-h-screen flex flex-col bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
@@ -28,8 +28,11 @@ function App() {
           <main className="flex-1 p-8 mt-20 mx-5 bg-red bg-white/5 backdrop-blur-sm rounded-xl shadow-2xl border border-white/10">
             <div className="container mx-auto">
               <Routes>
-                <Route path="/" element={<MoviesPage />} />
-                <Route path="/movies" element={<MoviesPage />} />
+                <Route path="/" element={<MoviesPage genre_id={genre} />} />
+                <Route
+                  path="/movies"
+                  element={<MoviesPage genre_id={genre} />}
+                />
                 <Route path="/people" element={<PeopleGrid />} />
                 <Route path="/tv-shows" element={<TVShowsPage />} />
                 <Route path="/lists" element={<ListsPage />} />

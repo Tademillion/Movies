@@ -1,9 +1,10 @@
 import LoadingSpinner from "../../common/LoadingSpinner";
 import UseMovies from "../Hooks/useMovies";
+import { GenreProps } from "../MoviesPage";
 import MovieCard from "./MovieCard";
 
-const MovieCardGrid = () => {
-  const { Error, movies, isLoading } = UseMovies();
+const MovieCardGrid = (genre_id: GenreProps) => {
+  const { Error, movies, isLoading } = UseMovies(genre_id);
 
   if (isLoading) {
     return <LoadingSpinner />;
