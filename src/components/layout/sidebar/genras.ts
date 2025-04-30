@@ -12,13 +12,11 @@ import apiClient from "../../../services/apiClient"
       const [genre,setGenre]= useState<GenresProps[]>([]);
       const[error,setError]=  useState();
       const [isLoading,setIsLoading]=useState(false);
-
 useEffect(()=>{
      setIsLoading(true)
     apiClient.get<genreResult>("/genre/movie/list")
     .then((Response)=>{
         setGenre(Response.data.genres);
-        console.log(Response.data)
         setIsLoading(false)}
     )
     .catch((error)=>{
