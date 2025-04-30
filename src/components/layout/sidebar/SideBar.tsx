@@ -1,4 +1,15 @@
+import ErrorPage from "../../common/ErrorPage";
+import LoadingSpinner from "../../common/LoadingSpinner";
+import Genras from "./genras";
+
 const SideBar = () => {
+  const { error, genre, isLoading } = Genras();
+  {
+    isLoading && <LoadingSpinner />;
+  }
+  {
+    error && <ErrorPage />;
+  }
   return (
     <div>
       <aside className="top-15 sticky w-64 h-auto p-6 bg-gradient-to-b from-indigo-900/90 via-purple-900/90 to-pink-900/90 backdrop-blur-sm border-r border-white/10">
@@ -32,7 +43,21 @@ const SideBar = () => {
             <div className="space-y-4">
               <h4 className="text-sm font-semibold text-white/80">Genres</h4>
               <div className="space-y-3">
-                {["Action", "Comedy", "Drama", "Horror", "Sci-Fi"].map(
+                {genre.slice(0, 5).map((genres) => (
+                  <label
+                    key={genres.id}
+                    className="flex items-center space-x-3 group"
+                  >
+                    <input
+                      type="checkbox"
+                      className="form-checkbox h-5 w-5 rounded border-white/30 bg-white/10 text-indigo-400 focus:ring-indigo-400 focus:ring-offset-0"
+                    />
+                    <span className="text-sm text-white/90 group-hover:text-white transition-colors">
+                      {genres.name}
+                    </span>
+                  </label>
+                ))}
+                {/* {["Action", "Comedy", "Drama", "Horror", "Sci-Fi"].map(
                   (genre) => (
                     <label
                       key={genre}
@@ -47,7 +72,7 @@ const SideBar = () => {
                       </span>
                     </label>
                   )
-                )}
+                )} */}
               </div>
             </div>
 

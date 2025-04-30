@@ -12,7 +12,7 @@ const UseMovies=()=>{
         .get<FetchMovieRespone>("/discover/movie")
         .then((response) => {
           setMovies(response.data.results);
-          // console.log(response.data);
+          console.log(response.data.results);
           setIsLoading(false);
         })
         .catch((error) => {
