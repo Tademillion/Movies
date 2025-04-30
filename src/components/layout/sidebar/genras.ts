@@ -20,7 +20,6 @@ useEffect(()=>{
         setGenre(Response.data.genres);
         console.log(Response.data)
         setIsLoading(false)}
-    
     )
     .catch((error)=>{
         console.log(error)
