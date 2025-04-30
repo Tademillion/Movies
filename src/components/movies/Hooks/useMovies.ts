@@ -13,7 +13,7 @@ const UseMovies=( {genre_id} : GenreProps)=>{
       apiClient
         .get<FetchMovieRespone>("/discover/movie",{params:{with_genres:genre_id}})
         .then((response) => {
-           console.log(response.request)
+          //  console.log(response.request)
           setMovies(response.data.results);
           // console.log(response.data.results);
           setIsLoading(false);
