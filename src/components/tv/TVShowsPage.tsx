@@ -1,7 +1,10 @@
 import { FC, useState } from "react";
 import TVShowGrid from "./grid/TVShowGrid";
+export interface TvshowsEndpointProps {
+  endpoint: String | null;
+}
 
-const TVShowsPage = () => {
+const TVShowsPage = (endpoint: TvshowsEndpointProps) => {
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = 10; // This would come from your API
 
@@ -14,7 +17,7 @@ const TVShowsPage = () => {
         </p>
       </div>
 
-      <TVShowGrid />
+      {/* <TVShowGrid /> */}
 
       <div className="flex justify-center items-center space-x-4 mt-8">
         <button

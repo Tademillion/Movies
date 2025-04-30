@@ -7,7 +7,7 @@ import {
 import ErrorPage from "./components/common/ErrorPage";
 import Footer from "./components/layout/footer/Footer";
 import Navbar from "./components/layout/navbar/Navbar";
-import SideBar from "./components/layout/sidebar/SideBar";
+import SideBar, { TvshowsType } from "./components/layout/sidebar/SideBar";
 import ListsPage from "./components/lists/ListsPage";
 import MoviesPage from "./components/movies/MoviesPage";
 import PeopleGrid from "./components/people/grid/PeopleGrid";
@@ -16,21 +16,12 @@ import { useEffect, useState } from "react";
 
 function App() {
   const [genre, setGenre] = useState<number | null>(null);
-  const [category, setCategory] = useState("");
-  // const navigate = useNavigate();
+  const [tvcategory, setTvCategory] = useState<string | null>(null);
 
-  // useEffect(() => {
-  //   if (category === "Movies") {
-  //     navigate("/tv-shows");
-  //   } else if (category === "Poeple") {
-  //     navigate("/people");
-  //   }
-  // }, [category, navigate]);
   return (
     <Router>
       <div className="min-h-screen flex flex-col bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
         <Navbar />
-
         {/* Main Content */}
         <div className="flex bg-black">
           {/* Sidebar */}
@@ -39,9 +30,9 @@ function App() {
               console.log("this is the genres you expect", genre_id);
               setGenre(genre_id);
             }}
-            handelChecks={(event: React.ChangeEvent<HTMLInputElement>) => {
-              setCategory(event.target.value);
-              console.log(event.target.value);
+            HandleTvCategory={(event: TvshowsType) => {
+              setTvCategory(event.value);
+              // console.log(tvcategory);
             }}
           />
           <main className="flex-1 p-8 mt-20 mx-5 bg-red bg-white/5 backdrop-blur-sm rounded-xl shadow-2xl border border-white/10">
@@ -53,7 +44,10 @@ function App() {
                   element={<MoviesPage genre_id={genre} />}
                 />
                 <Route path="/people" element={<PeopleGrid />} />
-                <Route path="/tv-shows" element={<TVShowsPage />} />
+                <Route
+                  path="/tv-shows"
+                  element={<TVShowsPage endpoint={tvcategory} />}
+                />
                 <Route path="/lists" element={<ListsPage />} />
 
                 <Route path="*" element={<ErrorPage errorType="404" />} />

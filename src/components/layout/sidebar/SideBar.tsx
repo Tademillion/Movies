@@ -2,11 +2,18 @@ import { useState } from "react";
 import ErrorPage from "../../common/ErrorPage";
 import LoadingSpinner from "../../common/LoadingSpinner";
 import Genras from "./genras";
+import { TvShowsConst } from "../../../constants/constants";
+export interface TvshowsType {
+  name: string;
+  value: string;
+}
 interface Props {
   handelCheck: (genre_id: number) => void;
-  handelChecks: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handelChecks?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  HandleTvCategory: (data: TvshowsType) => void;
 }
-const SideBar = ({ handelCheck }: Props) => {
+
+const SideBar = ({ handelCheck, HandleTvCategory }: Props) => {
   const { error, genre, isLoading } = Genras();
   {
     isLoading && <LoadingSpinner />;
@@ -18,6 +25,7 @@ const SideBar = ({ handelCheck }: Props) => {
   const handelChecks = (event: React.ChangeEvent<HTMLInputElement>) => {
     console.log(event.target.value);
   };
+
   return (
     <div>
       <aside className="top-15 sticky w-64 h-auto p-6 bg-gradient-to-b from-indigo-900/90 via-purple-900/90 to-pink-900/90 backdrop-blur-sm border-r border-white/10">
@@ -96,24 +104,23 @@ const SideBar = ({ handelCheck }: Props) => {
 
             <div className="space-y-4">
               <h4 className="text-sm font-semibold text-white/80">
-                People Filters
+                Tv-Shows Filters
               </h4>
-              <div className="space-y-3">
-                {["Actors", "Directors", "Writers", "Producers"].map((role) => (
-                  <label
-                    key={role}
-                    className="flex items-center space-x-3 group"
-                  >
+              {TvShowsConst.map((tv, index) => (
+                <div className="space-y-3" key={index}>
+                  <label className="flex items-center space-x-3 group">
                     <input
                       type="checkbox"
+                      value={tv.value}
                       className="form-checkbox h-5 w-5 rounded border-white/30 bg-white/10 text-indigo-400 focus:ring-indigo-400 focus:ring-offset-0"
+                      onChange={() => HandleTvCategory(tv)}
                     />
                     <span className="text-sm text-white/90 group-hover:text-white transition-colors">
-                      {role}
+                      {tv.name}
                     </span>
                   </label>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
 
             <div className="space-y-4">

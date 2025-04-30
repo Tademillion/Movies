@@ -2,6 +2,7 @@ import TVShowCard from "../card/TVShowCard";
 import LoadingSpinner from "../../common/LoadingSpinner";
 import ErrorPage from "../../common/ErrorPage";
 import UseTvShows from "../hooks/UseTvShows";
+import { TvshowsEndpointProps } from "../TVShowsPage";
 
 const TVShowGrid = () => {
   const { error, isLoading, tvShows } = UseTvShows();

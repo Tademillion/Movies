@@ -32,3 +32,22 @@ export const TMDB_ENDPOINTS = {
     list: '/genre/movie/list',
   },
 }; 
+
+export const TMDB_ENDPOINTS_TV = {
+  tv: {
+    popular: '/tv/popular',
+    topRated: '/tv/top_rated',
+    onTheAir: '/tv/on_the_air',
+    airingToday: '/tv/airing_today',
+    details: (id: number) => `/tv/${id}`,
+    credits: (id: number) => `/tv/${id}/credits`,
+    videos: (id: number) => `/tv/${id}/videos`,
+    similar: (id: number) => `/tv/${id}/similar`,
+    recommendations: (id: number) => `/tv/${id}/recommendations`,
+    search: '/search/tv',
+    episodeGroups: (id: number) => `/tv/${id}/episode_groups`,
+    contentRatings: (id: number) => `/tv/${id}/content_ratings`,
+    externalIDs: (id: number) => `/tv/${id}/external_ids`,
+    images: (id: number) => `/tv/${id}/images`,
+    keywords: (id: number) => `/tv/${id}/keywords`,
+    reviews: (id: number) => `/tv/${id}/reviews`,}}
