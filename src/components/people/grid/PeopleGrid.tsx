@@ -3,7 +3,7 @@ import apiClient from "../../../services/apiClient";
 import ErrorPage from "../../common/ErrorPage";
 import LoadingSpinner from "../../common/LoadingSpinner";
 import PeopleCard from "../card/PeopleCard";
-import { PeopleGridProps } from "../../../types/api.types";
+import { FetchPeopleRespone, PeopleGridProps } from "../../../types/api.types";
 
 const PeopleGrid: FC = () => {
   const [people, setPeople] = useState<PeopleGridProps[]>([]);
@@ -13,7 +13,7 @@ const PeopleGrid: FC = () => {
   useEffect(() => {
     setIsLoading(true);
     apiClient
-      .get("person/popular")
+      .get<FetchPeopleRespone>("person/popular")
       .then((Response) => {
         setPeople(Response.data.results);
         setIsLoading(false);

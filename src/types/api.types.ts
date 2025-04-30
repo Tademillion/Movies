@@ -10,6 +10,11 @@ export interface Movie {
   genre_ids: number[];
 }
 
+export interface FetchMovieRespone{
+  total_pages:number,
+  total_results:number,
+  results:Movie[]
+}
 export interface MovieResponse {
   page: number;
   results: Movie[];
@@ -91,6 +96,9 @@ export interface PeopleGridProps {
   known_for_department: string;
 }
 
+ export interface FetchPeopleRespone{
+results:PeopleGridProps[];
+}
 //  the  tv shows
 export interface TVShow {
   id: number;

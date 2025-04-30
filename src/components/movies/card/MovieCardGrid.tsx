@@ -1,34 +1,20 @@
 import { useEffect, useState } from "react";
 import apiClient from "../../../services/apiClient";
-import { Movie } from "../../../types/api.types";
+import { FetchMovieRespone, Movie } from "../../../types/api.types";
 import LoadingSpinner from "../../common/LoadingSpinner";
 import MovieCard from "./MovieCard";
+import UseMovies from "../Hooks/useMovies";
 
 const MovieCardGrid = () => {
-  const [movies, setMovies] = useState<Movie[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  useEffect(() => {
-    setIsLoading(true);
-    apiClient
-      .get("/discover/movie")
-      .then((response) => {
-        setMovies(response.data.results);
-        console.log(response.data.results);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        setError(error);
-        setIsLoading(false);
-      });
-  }, []);
+  const { Error, movies, isLoading } = UseMovies();
+
   if (isLoading) {
     return <LoadingSpinner />;
   }
-  if (error) {
+  if (Error) {
     return (
       <div className="text-center py-8">
-        <p className="text-red-500">{error}</p>
+        <p className="text-red-500">{Error}</p>
         <button
           onClick={() => window.location.reload()}
           className="mt-4 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
