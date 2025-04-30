@@ -15,7 +15,7 @@ const UseMovies=( {genre_id} : GenreProps)=>{
         .then((response) => {
            console.log(response.request)
           setMovies(response.data.results);
-          console.log(response.data.results);
+          // console.log(response.data.results);
           setIsLoading(false);
         })
         .catch((error) => {

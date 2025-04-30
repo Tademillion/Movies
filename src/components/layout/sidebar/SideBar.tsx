@@ -47,7 +47,10 @@ const SideBar = ({ handelCheck }: Props) => {
             </div>
 
             <div className="space-y-4">
-              <h4 className="text-sm font-semibold text-white/80">Genres</h4>
+              <h4 className="text-sm font-semibold text-white/80">
+                {" "}
+                Movies By Genres
+              </h4>
               <div className="space-y-3">
                 {genre.slice(0, 5).map((genres) => (
                   <label
