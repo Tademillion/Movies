@@ -5,9 +5,7 @@ import UseTvShows from "../hooks/UseTvShows";
 import { TvshowsEndpointProps } from "../TVShowsPage";
 
 const TVShowGrid = (endpoint: TvshowsEndpointProps) => {
-  // console.log(endpoint.endpoint);
   const { error, isLoading, tvShows } = UseTvShows(endpoint);
-
   if (isLoading) {
     return (
       <div className="min-h-[60vh] flex items-center justify-center">
@@ -15,15 +13,12 @@ const TVShowGrid = (endpoint: TvshowsEndpointProps) => {
       </div>
     );
   }
-
   if (error) {
     return <ErrorPage errorType="network" message={error} />;
   }
-
   if (!tvShows.length) {
     return <ErrorPage errorType="generic" message="No TV shows found" />;
   }
-
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-6">
       {tvShows.map((show) => (
@@ -32,5 +27,4 @@ const TVShowGrid = (endpoint: TvshowsEndpointProps) => {
     </div>
   );
 };
-
 export default TVShowGrid;

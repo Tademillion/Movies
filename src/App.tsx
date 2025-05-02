@@ -1,19 +1,13 @@
-import {
-  Route,
-  BrowserRouter as Router,
-  Routes,
-  useNavigate,
-} from "react-router-dom";
+import { useState } from "react";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import ErrorPage from "./components/common/ErrorPage";
 import Footer from "./components/layout/footer/Footer";
 import Navbar from "./components/layout/navbar/Navbar";
-import SideBar, { TvshowsType } from "./components/layout/sidebar/SideBar";
+import SideBar from "./components/layout/sidebar/SideBar";
 import ListsPage from "./components/lists/ListsPage";
 import MoviesPage from "./components/movies/MoviesPage";
 import PeopleGrid from "./components/people/grid/PeopleGrid";
 import TVShowsPage from "./components/tv/TVShowsPage";
-import { useEffect, useState } from "react";
-import { TMDB_ENDPOINTS_TV } from "./constants/api.constants";
 function App() {
   const [genre, setGenre] = useState<number | null>(null);
   const [tvcategory, setTvCategory] = useState<string | null>(null);
@@ -31,7 +25,6 @@ function App() {
             }}
             HandleTvCategory={(endpoint: string) => {
               setTvCategory(endpoint);
-              // console.log(tvcategory);
             }}
           />
           <main className="flex-1 p-8 mt-20 mx-5 bg-red bg-white/5 backdrop-blur-sm rounded-xl shadow-2xl border border-white/10">

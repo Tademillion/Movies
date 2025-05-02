@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
-import { FetchTvShowsRespone, TVShow } from "../../../types/api.types";
-import apiClient from "../../../services/apiClient";
-import { TvshowsEndpointProps } from "../TVShowsPage";
-import { TMDB_ENDPOINTS_TV } from "../../../constants/api.constants";
 import tvShowapiClient from "../../../services/tvShowapiClient";
+import { FetchTvShowsRespone, TVShow } from "../../../types/api.types";
+import { TvshowsEndpointProps } from "../TVShowsPage";
 
 const UseTvShows=({endpoint}:TvshowsEndpointProps)=>{
     const [tvShows, setTVShows] = useState<TVShow[]>([]);
