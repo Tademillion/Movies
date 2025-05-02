@@ -7,9 +7,10 @@ export interface TvshowsType {
   name: string;
   value: string;
 }
+
 interface Props {
   handelCheck: (genre_id: number) => void;
-  HandleTvCategory: (data: TvshowsType) => void;
+  HandleTvCategory: (data: string) => void;
 }
 
 const SideBar = ({ handelCheck, HandleTvCategory }: Props) => {
@@ -20,7 +21,6 @@ const SideBar = ({ handelCheck, HandleTvCategory }: Props) => {
   {
     error && <ErrorPage />;
   }
-
   return (
     <div>
       <aside className="top-15 sticky w-64 h-auto p-6 bg-gradient-to-b from-indigo-900/90 via-purple-900/90 to-pink-900/90 backdrop-blur-sm border-r border-white/10">
@@ -92,7 +92,7 @@ const SideBar = ({ handelCheck, HandleTvCategory }: Props) => {
                       type="checkbox"
                       // value={tv.value}
                       className="form-checkbox h-5 w-5 rounded border-white/30 bg-white/10 text-indigo-400 focus:ring-indigo-400 focus:ring-offset-0"
-                      onChange={() => HandleTvCategory(tv)}
+                      onChange={() => HandleTvCategory(tv.value)}
                     />
                     <span className="text-sm text-white/90 group-hover:text-white transition-colors">
                       {tv.name}

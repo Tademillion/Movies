@@ -4,8 +4,9 @@ import ErrorPage from "../../common/ErrorPage";
 import UseTvShows from "../hooks/UseTvShows";
 import { TvshowsEndpointProps } from "../TVShowsPage";
 
-const TVShowGrid = () => {
-  const { error, isLoading, tvShows } = UseTvShows();
+const TVShowGrid = (endpoint: TvshowsEndpointProps) => {
+  // console.log(endpoint.endpoint);
+  const { error, isLoading, tvShows } = UseTvShows(endpoint);
 
   if (isLoading) {
     return (

@@ -13,16 +13,11 @@ import MoviesPage from "./components/movies/MoviesPage";
 import PeopleGrid from "./components/people/grid/PeopleGrid";
 import TVShowsPage from "./components/tv/TVShowsPage";
 import { useEffect, useState } from "react";
+import { TMDB_ENDPOINTS_TV } from "./constants/api.constants";
 function App() {
   const [genre, setGenre] = useState<number | null>(null);
   const [tvcategory, setTvCategory] = useState<string | null>(null);
-  useEffect(() => {
-    console.log(tvcategory);
-  }, [tvcategory]);
-  const handleTvCategoryChange = (data: TvshowsType) => {
-    setTvCategory(data.value);
-    console.log("Tv Category in Parent:", tvcategory); // not render correct value because its  state is not update so put in useeffect
-  };
+
   return (
     <Router>
       <div className="min-h-screen flex flex-col bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
@@ -34,11 +29,10 @@ function App() {
             handelCheck={(genre_id: number) => {
               setGenre(genre_id);
             }}
-            // HandleTvCategory={(event: TvshowsType) => {
-            //   setTvCategory(event.value);
-            //   console.log(tvcategory);
-            // }}
-            HandleTvCategory={handleTvCategoryChange}
+            HandleTvCategory={(endpoint: string) => {
+              setTvCategory(endpoint);
+              // console.log(tvcategory);
+            }}
           />
           <main className="flex-1 p-8 mt-20 mx-5 bg-red bg-white/5 backdrop-blur-sm rounded-xl shadow-2xl border border-white/10">
             <div className="container mx-auto">

@@ -4,12 +4,12 @@
 },
 {
     name:"Top Rated",
-    value:"topRated"
+    value:"top_rated"
 }
 ,{
     name:"On The Air",
-    value:"onTheAir"
+    value:"on_the_air"
 },{
     name:"On the Air Today",
-    value:"airingToday"
+    value:"airing_today"
 }]
