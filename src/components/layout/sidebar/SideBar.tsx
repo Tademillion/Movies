@@ -9,7 +9,6 @@ export interface TvshowsType {
 }
 interface Props {
   handelCheck: (genre_id: number) => void;
-  handelChecks?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   HandleTvCategory: (data: TvshowsType) => void;
 }
 
@@ -21,10 +20,6 @@ const SideBar = ({ handelCheck, HandleTvCategory }: Props) => {
   {
     error && <ErrorPage />;
   }
-
-  const handelChecks = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(event.target.value);
-  };
 
   return (
     <div>
@@ -49,7 +44,7 @@ const SideBar = ({ handelCheck, HandleTvCategory }: Props) => {
                       value={category}
                       className="form-radio h-5 w-5 border-white/30 bg-white/10 text-indigo-400 focus:ring-indigo-400 focus:ring-offset-0"
                       onChange={(e) => {
-                        handelChecks(e);
+                        // handelChecks(e);
                       }}
                     />
                     <span className="text-sm text-white/90 group-hover:text-white transition-colors">
@@ -83,22 +78,6 @@ const SideBar = ({ handelCheck, HandleTvCategory }: Props) => {
                     </span>
                   </label>
                 ))}
-                {/* {["Action", "Comedy", "Drama", "Horror", "Sci-Fi"].map(
-                  (genre) => (
-                    <label
-                      key={genre}
-                      className="flex items-center space-x-3 group"
-                    >
-                      <input
-                        type="checkbox"
-                        className="form-checkbox h-5 w-5 rounded border-white/30 bg-white/10 text-indigo-400 focus:ring-indigo-400 focus:ring-offset-0"
-                      />
-                      <span className="text-sm text-white/90 group-hover:text-white transition-colors">
-                        {genre}
-                      </span>
-                    </label>
-                  )
-                )} */}
               </div>
             </div>
 
@@ -111,7 +90,7 @@ const SideBar = ({ handelCheck, HandleTvCategory }: Props) => {
                   <label className="flex items-center space-x-3 group">
                     <input
                       type="checkbox"
-                      value={tv.value}
+                      // value={tv.value}
                       className="form-checkbox h-5 w-5 rounded border-white/30 bg-white/10 text-indigo-400 focus:ring-indigo-400 focus:ring-offset-0"
                       onChange={() => HandleTvCategory(tv)}
                     />

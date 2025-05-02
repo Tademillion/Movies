@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 import TVShowGrid from "./grid/TVShowGrid";
 export interface TvshowsEndpointProps {
-  endpoint: String | null;
+  endpoint: string | null;
 }
 
 const TVShowsPage = (endpoint: TvshowsEndpointProps) => {
