@@ -3,7 +3,7 @@ import LoadingSpinner from "../../common/LoadingSpinner";
 import Genras from "./genras";
 import { MoviesCategory, TvShowsConst } from "../../../constants/constants";
 import { useEffect, useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 export interface TvshowsType {
   name: string;
   value: string;
@@ -13,16 +13,14 @@ interface Props {
   handelCheck: (genre_id: number) => void;
   HandleTvCategory: (data: TvshowsType) => void;
   HandleMovieSortBy: (data: string) => void;
-  linkvalue: (data: string) => void;
 }
 
 const SideBar = ({
   handelCheck,
   HandleTvCategory,
   HandleMovieSortBy,
-  linkvalue,
 }: Props) => {
-  const [value, setValue] = useState("Movies");
+  const [value, setValue] = useState();
 
   const { error, genre, isLoading } = Genras();
   {
@@ -34,8 +32,14 @@ const SideBar = ({
   const Navigate = useNavigate();
 
   useEffect(() => {
-    if (value === "tvshows") {
+    if (value === "Tvshows") {
       Navigate("/tv-shows");
+    }
+    if (value === "Movies") {
+      Navigate("/movies");
+    }
+    if (value === "People") {
+      Navigate("/people");
     }
   }, [value]);
   return (
@@ -50,7 +54,7 @@ const SideBar = ({
                 Categories
               </h4>
               <div className="space-y-3">
-                {["Movies", "People", "tvshows"].map((category) => (
+                {["Movies", "People", "Tvshows"].map((category) => (
                   <label
                     key={category}
                     className="flex items-center space-x-3 group"
@@ -58,12 +62,12 @@ const SideBar = ({
                     <input
                       type="radio"
                       name="category"
+                      checked={value === category} // Compare with the state
                       value={category}
-                      className="form-radio h-5 w-5 border-white/30 bg-white/10 text-indigo-400 focus:ring-indigo-400 focus:ring-offset-0"
                       onChange={() => {
-                        linkvalue(category);
                         setValue(category);
                       }}
+                      className="form-radio h-5 w-5 border-white/30 bg-white/10 text-indigo-400 focus:ring-indigo-400 focus:ring-offset-0"
                     />
                     <span className="text-sm text-white/90 group-hover:text-white transition-colors">
                       {category}
@@ -100,7 +104,7 @@ const SideBar = ({
               </div>
             )}
 
-            {value === "tvshows" && (
+            {value === "Tvshows" && (
               <div className="space-y-4">
                 <h4 className="text-sm font-semibold text-white/80">
                   Tv-Shows Filters
