@@ -28,8 +28,10 @@ const UseMovies=( {genre_id,sortedBy} : GenreProps)=>{
       apiClient
         .get<FetchMovieRespone>("/discover/movie",{params:{with_genres:genre_id}})
         .then((response) => {
+          console.log(response.data.results)
+           console.log("data after sort")
+          console.log(getSortedResults(response.data.results,sortedBy))
           setMovies(getSortedResults(response.data.results,sortedBy));
-          
           setIsLoading(false);
         })
         .catch((error) => {

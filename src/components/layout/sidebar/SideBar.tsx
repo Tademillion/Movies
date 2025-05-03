@@ -1,7 +1,7 @@
 import ErrorPage from "../../common/ErrorPage";
 import LoadingSpinner from "../../common/LoadingSpinner";
 import Genras from "./genras";
-import { TvShowsConst } from "../../../constants/constants";
+import { MoviesCategory, TvShowsConst } from "../../../constants/constants";
 export interface TvshowsType {
   name: string;
   value: string;
@@ -112,27 +112,24 @@ const SideBar = ({
                 Mivies Sort By
               </h4>
               <div className="space-y-3">
-                {["popularity", "Rating", "Release Date", "title", "Voice"].map(
-                  (sort) => (
-                    <label
-                      key={sort}
-                      className="flex items-center space-x-3 group"
-                    >
-                      <input
-                        value={sort}
-                        type="radio"
-                        name="sort"
-                        className="form-radio h-5 w-5 border-white/30 bg-white/10 text-indigo-400 focus:ring-indigo-400 focus:ring-offset-0"
-                        onChange={(event) => {
-                          HandleMovieSortBy(event.target.value);
-                        }}
-                      />
-                      <span className="text-sm text-white/90 group-hover:text-white transition-colors">
-                        {sort}
-                      </span>
-                    </label>
-                  )
-                )}
+                {MoviesCategory.map((category, index) => (
+                  <label
+                    key={index}
+                    className="flex items-center space-x-3 group"
+                  >
+                    <input
+                      type="radio"
+                      name="sort"
+                      className="form-radio h-5 w-5 border-white/30 bg-white/10 text-indigo-400 focus:ring-indigo-400 focus:ring-offset-0"
+                      onChange={() => {
+                        HandleMovieSortBy(category.value);
+                      }}
+                    />
+                    <span className="text-sm text-white/90 group-hover:text-white transition-colors">
+                      {category.name}
+                    </span>
+                  </label>
+                ))}
               </div>
             </div>
           </div>
