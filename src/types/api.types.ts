@@ -9,6 +9,7 @@ export interface Movie {
   vote_count: number;
   popularity:number;
   genre_ids: number[];
+  [key: string]: any; // this is only for sorted by
 }
 
 export interface FetchMovieRespone{

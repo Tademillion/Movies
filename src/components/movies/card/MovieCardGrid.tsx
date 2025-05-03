@@ -3,8 +3,8 @@ import UseMovies from "../Hooks/useMovies";
 import { GenreProps } from "../MoviesPage";
 import MovieCard from "./MovieCard";
 
-const MovieCardGrid = (genre_id: GenreProps) => {
-  const { Error, movies, isLoading } = UseMovies(genre_id);
+const MovieCardGrid = ({ genre_id, sortedBy }: GenreProps) => {
+  const { Error, movies, isLoading } = UseMovies({ genre_id, sortedBy });
 
   if (isLoading) {
     return <LoadingSpinner />;

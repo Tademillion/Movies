@@ -12,6 +12,7 @@ function App() {
   const [genre, setGenre] = useState<number | null>(null);
   const [tvcategory, setTvCategory] = useState<string | null>(null);
   const [tvshowsCategory, setTvshowsCategory] = useState<string>("Popular");
+  const [MoviesSortedby, setMoviesSortedby] = useState<string | null>(null);
   return (
     <Router>
       <div className="min-h-screen flex flex-col bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
@@ -28,16 +29,23 @@ function App() {
               setTvshowsCategory(endpoint.name);
             }}
             HandleMovieSortBy={(data: string) => {
-              console.log(data);
+              setMoviesSortedby(data);
             }}
           />
           <main className="flex-1 p-8 mt-20 mx-5 bg-red bg-white/5 backdrop-blur-sm rounded-xl shadow-2xl border border-white/10">
             <div className="container mx-auto">
               <Routes>
-                <Route path="/" element={<MoviesPage genre_id={genre} />} />
+                <Route
+                  path="/"
+                  element={
+                    <MoviesPage sortedBy={MoviesSortedby} genre_id={genre} />
+                  }
+                />
                 <Route
                   path="/movies"
-                  element={<MoviesPage genre_id={genre} />}
+                  element={
+                    <MoviesPage genre_id={genre} sortedBy={MoviesSortedby} />
+                  }
                 />
                 <Route path="/people" element={<PeopleGrid />} />
                 <Route

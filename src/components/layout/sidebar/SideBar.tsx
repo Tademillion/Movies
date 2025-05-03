@@ -112,7 +112,7 @@ const SideBar = ({
                 Mivies Sort By
               </h4>
               <div className="space-y-3">
-                {["Popularity", "Rating", "Release Date", "Title", "Voice"].map(
+                {["popularity", "Rating", "Release Date", "title", "Voice"].map(
                   (sort) => (
                     <label
                       key={sort}
