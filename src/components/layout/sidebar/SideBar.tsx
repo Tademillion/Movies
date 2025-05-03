@@ -1,4 +1,3 @@
-import { useState } from "react";
 import ErrorPage from "../../common/ErrorPage";
 import LoadingSpinner from "../../common/LoadingSpinner";
 import Genras from "./genras";
@@ -11,9 +10,14 @@ export interface TvshowsType {
 interface Props {
   handelCheck: (genre_id: number) => void;
   HandleTvCategory: (data: TvshowsType) => void;
+  HandleMovieSortBy: (data: string) => void;
 }
 
-const SideBar = ({ handelCheck, HandleTvCategory }: Props) => {
+const SideBar = ({
+  handelCheck,
+  HandleTvCategory,
+  HandleMovieSortBy,
+}: Props) => {
   const { error, genre, isLoading } = Genras();
   {
     isLoading && <LoadingSpinner />;
@@ -103,18 +107,25 @@ const SideBar = ({ handelCheck, HandleTvCategory }: Props) => {
             </div>
 
             <div className="space-y-4">
-              <h4 className="text-sm font-semibold text-white/80">Sort By</h4>
+              <h4 className="text-sm font-semibold text-white/80">
+                {" "}
+                Mivies Sort By
+              </h4>
               <div className="space-y-3">
-                {["Popularity", "Rating", "Release Date", "Title", "Name"].map(
+                {["Popularity", "Rating", "Release Date", "Title", "Voice"].map(
                   (sort) => (
                     <label
                       key={sort}
                       className="flex items-center space-x-3 group"
                     >
                       <input
+                        value={sort}
                         type="radio"
                         name="sort"
                         className="form-radio h-5 w-5 border-white/30 bg-white/10 text-indigo-400 focus:ring-indigo-400 focus:ring-offset-0"
+                        onChange={(event) => {
+                          HandleMovieSortBy(event.target.value);
+                        }}
                       />
                       <span className="text-sm text-white/90 group-hover:text-white transition-colors">
                         {sort}

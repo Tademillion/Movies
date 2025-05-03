@@ -11,12 +11,12 @@ const MovieCard = ({ movie, onClick }: MovieCardProps) => {
   return (
     <div
       onClick={onClick}
-      className="group relative w-[300px] cursor-pointer overflow-hidden rounded-lg shadow-lg transition-transform duration-300 hover:scale-105"
+      className="group relative w-[270px] cursor-pointer overflow-hidden rounded-md shadow-md transition-transform duration-300 hover:scale-105"
     >
       {/* Movie Poster */}
-      <div className="relative aspect-[2/3] overflow-hidden">
+      <div className="relative aspect-[2/3] ">
         <img
-          src={`${TMDB_IMAGE_SIZES.poster.medium}${movie.poster_path}`}
+          src={`${TMDB_IMAGE_SIZES.poster.small}${movie.poster_path}`}
           alt={movie.title}
           className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
         />

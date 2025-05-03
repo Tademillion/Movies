@@ -12,7 +12,6 @@ function App() {
   const [genre, setGenre] = useState<number | null>(null);
   const [tvcategory, setTvCategory] = useState<string | null>(null);
   const [tvshowsCategory, setTvshowsCategory] = useState<string>("Popular");
-
   return (
     <Router>
       <div className="min-h-screen flex flex-col bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
@@ -27,6 +26,9 @@ function App() {
             HandleTvCategory={(endpoint: TvshowsType) => {
               setTvCategory(endpoint.value);
               setTvshowsCategory(endpoint.name);
+            }}
+            HandleMovieSortBy={(data: string) => {
+              console.log(data);
             }}
           />
           <main className="flex-1 p-8 mt-20 mx-5 bg-red bg-white/5 backdrop-blur-sm rounded-xl shadow-2xl border border-white/10">
