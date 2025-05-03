@@ -13,10 +13,16 @@ function App() {
   const [tvcategory, setTvCategory] = useState<string | null>(null);
   const [tvshowsCategory, setTvshowsCategory] = useState<string>("Popular");
   const [MoviesSortedby, setMoviesSortedby] = useState<string | null>(null);
+  const [NavlinkValue, seNavLinkValue] = useState<string>("");
+
   return (
     <Router>
       <div className="min-h-screen flex flex-col bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
-        <Navbar />
+        <Navbar
+          linkvalue={(data: string) => {
+            seNavLinkValue(data);
+          }}
+        />
         {/* Main Content */}
         <div className="flex bg-black">
           {/* Sidebar */}

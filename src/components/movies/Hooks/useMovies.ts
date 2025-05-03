@@ -7,8 +7,7 @@ const UseMovies=( {genre_id,sortedBy} : GenreProps)=>{
     const [movies, setMovies] = useState<Movie[]>([]);
     const [isLoading, setIsLoading] = useState(false);
     const [Error, setError] = useState<string | null>(null);
-
-    function getSortedResults(data:   Movie[] , sortedBy: string | null): Movie[] {
+  const    getSortedResults=(data:   Movie[] , sortedBy: string | null): Movie[]=> {
       if (!data || !data || !Array.isArray(data) || !sortedBy) {
         return data || []; // Or handle as needed
       }
@@ -28,9 +27,6 @@ const UseMovies=( {genre_id,sortedBy} : GenreProps)=>{
       apiClient
         .get<FetchMovieRespone>("/discover/movie",{params:{with_genres:genre_id}})
         .then((response) => {
-          console.log(response.data.results)
-           console.log("data after sort")
-          console.log(getSortedResults(response.data.results,sortedBy))
           setMovies(getSortedResults(response.data.results,sortedBy));
           setIsLoading(false);
         })

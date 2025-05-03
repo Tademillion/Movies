@@ -47,9 +47,6 @@ const SideBar = ({
                       name="category"
                       value={category}
                       className="form-radio h-5 w-5 border-white/30 bg-white/10 text-indigo-400 focus:ring-indigo-400 focus:ring-offset-0"
-                      onChange={(e) => {
-                        // handelChecks(e);
-                      }}
                     />
                     <span className="text-sm text-white/90 group-hover:text-white transition-colors">
                       {category}
