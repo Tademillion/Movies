@@ -40,11 +40,17 @@ const PeopleGrid: FC = () => {
     return <ErrorPage errorType="generic" message="No people found" />;
   }
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-6">
-      {people.map((person) => (
-        <PeopleCard key={person.id} poeple={person} />
-      ))}
-    </div>
+    <>
+      <p className="text-white text-lg max-w-2xl text-center mb-10">
+        Discover and explore the most popular actors, directors, writers, and
+        producers in the entertainment industry.
+      </p>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-6">
+        {people.map((person) => (
+          <PeopleCard key={person.id} poeple={person} />
+        ))}
+      </div>
+    </>
   );
 };
 export default PeopleGrid;

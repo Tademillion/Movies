@@ -1,13 +1,4 @@
-import { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
-
-interface NavLinkprops {
-  linkvalue: (data: string) => void;
-}
-
-const Navbar = ({ linkvalue }: NavLinkprops) => {
-  const [value, setValue] = useState("");
-
+const Navbar = () => {
   return (
     <div>
       <nav className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 py-4 fixed top-0 w-full z-50 shadow-lg">
@@ -42,7 +33,6 @@ const Navbar = ({ linkvalue }: NavLinkprops) => {
                 </svg>
               </div>
             </div>
-
             <div className="flex items-center space-x-6">
               <a
                 href="/movies"

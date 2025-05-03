@@ -18,11 +18,7 @@ function App() {
   return (
     <Router>
       <div className="min-h-screen flex flex-col bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
-        <Navbar
-          linkvalue={(data: string) => {
-            seNavLinkValue(data);
-          }}
-        />
+        <Navbar />
         {/* Main Content */}
         <div className="flex bg-black">
           {/* Sidebar */}
@@ -36,6 +32,9 @@ function App() {
             }}
             HandleMovieSortBy={(data: string) => {
               setMoviesSortedby(data);
+            }}
+            linkvalue={(data: string) => {
+              console.log(data);
             }}
           />
           <main className="flex-1 p-8 mt-20 mx-5 bg-red bg-white/5 backdrop-blur-sm rounded-xl shadow-2xl border border-white/10">

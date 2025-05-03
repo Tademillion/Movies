@@ -2,6 +2,8 @@ import ErrorPage from "../../common/ErrorPage";
 import LoadingSpinner from "../../common/LoadingSpinner";
 import Genras from "./genras";
 import { MoviesCategory, TvShowsConst } from "../../../constants/constants";
+import { useEffect, useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 export interface TvshowsType {
   name: string;
   value: string;
@@ -11,13 +13,17 @@ interface Props {
   handelCheck: (genre_id: number) => void;
   HandleTvCategory: (data: TvshowsType) => void;
   HandleMovieSortBy: (data: string) => void;
+  linkvalue: (data: string) => void;
 }
 
 const SideBar = ({
   handelCheck,
   HandleTvCategory,
   HandleMovieSortBy,
+  linkvalue,
 }: Props) => {
+  const [value, setValue] = useState("Movies");
+
   const { error, genre, isLoading } = Genras();
   {
     isLoading && <LoadingSpinner />;
@@ -25,9 +31,16 @@ const SideBar = ({
   {
     error && <ErrorPage />;
   }
+  const Navigate = useNavigate();
+
+  useEffect(() => {
+    if (value === "tvshows") {
+      Navigate("/tv-shows");
+    }
+  }, [value]);
   return (
     <div>
-      <aside className="top-15 sticky w-64 h-auto p-6 bg-gradient-to-b from-indigo-900/90 via-purple-900/90 to-pink-900/90 backdrop-blur-sm border-r border-white/10">
+      <aside className="top-15 sticky w-64 h-screen p-6 bg-gradient-to-b from-indigo-900/90 via-purple-900/90 to-pink-900/90 backdrop-blur-sm border-r border-white/10">
         <div className="space-y-8">
           <div className="space-y-6">
             <h3 className="text-xl font-bold text-white">Filters</h3>
@@ -37,7 +50,7 @@ const SideBar = ({
                 Categories
               </h4>
               <div className="space-y-3">
-                {["Movies", "People"].map((category) => (
+                {["Movies", "People", "tvshows"].map((category) => (
                   <label
                     key={category}
                     className="flex items-center space-x-3 group"
@@ -47,6 +60,10 @@ const SideBar = ({
                       name="category"
                       value={category}
                       className="form-radio h-5 w-5 border-white/30 bg-white/10 text-indigo-400 focus:ring-indigo-400 focus:ring-offset-0"
+                      onChange={() => {
+                        linkvalue(category);
+                        setValue(category);
+                      }}
                     />
                     <span className="text-sm text-white/90 group-hover:text-white transition-colors">
                       {category}
@@ -55,80 +72,85 @@ const SideBar = ({
                 ))}
               </div>
             </div>
-
-            <div className="space-y-4">
-              <h4 className="text-sm font-semibold text-white/80">
-                {" "}
-                Movies By Genres
-              </h4>
-              <div className="space-y-3">
-                {genre.slice(0, 5).map((genres) => (
-                  <label
-                    key={genres.id}
-                    className="flex items-center space-x-3 group"
-                  >
-                    <input
-                      type="checkbox"
-                      className="form-checkbox h-5 w-5 rounded border-white/30 bg-white/10 text-indigo-400 focus:ring-indigo-400 focus:ring-offset-0"
-                      onChange={() => {
-                        handelCheck(genres.id);
-                      }}
-                    />
-                    <span className="text-sm text-white/90 group-hover:text-white transition-colors">
-                      {genres.name}
-                    </span>
-                  </label>
-                ))}
-              </div>
-            </div>
-
-            <div className="space-y-4">
-              <h4 className="text-sm font-semibold text-white/80">
-                Tv-Shows Filters
-              </h4>
-              {TvShowsConst.map((tv, index) => (
-                <div className="space-y-3" key={index}>
-                  <label className="flex items-center space-x-3 group">
-                    <input
-                      type="checkbox"
-                      // value={tv.value}
-                      className="form-checkbox h-5 w-5 rounded border-white/30 bg-white/10 text-indigo-400 focus:ring-indigo-400 focus:ring-offset-0"
-                      onChange={() => HandleTvCategory(tv)}
-                    />
-                    <span className="text-sm text-white/90 group-hover:text-white transition-colors">
-                      {tv.name}
-                    </span>
-                  </label>
+            {value === "Movies" && (
+              <div className="space-y-4">
+                <h4 className="text-sm font-semibold text-white/80">
+                  {" "}
+                  Movies By Genres
+                </h4>
+                <div className="space-y-3">
+                  {genre.slice(0, 5).map((genres) => (
+                    <label
+                      key={genres.id}
+                      className="flex items-center space-x-3 group"
+                    >
+                      <input
+                        type="checkbox"
+                        className="form-checkbox h-5 w-5 rounded border-white/30 bg-white/10 text-indigo-400 focus:ring-indigo-400 focus:ring-offset-0"
+                        onChange={() => {
+                          handelCheck(genres.id);
+                        }}
+                      />
+                      <span className="text-sm text-white/90 group-hover:text-white transition-colors">
+                        {genres.name}
+                      </span>
+                    </label>
+                  ))}
                 </div>
-              ))}
-            </div>
+              </div>
+            )}
 
-            <div className="space-y-4">
-              <h4 className="text-sm font-semibold text-white/80">
-                {" "}
-                Mivies Sort By
-              </h4>
-              <div className="space-y-3">
-                {MoviesCategory.map((category, index) => (
-                  <label
-                    key={index}
-                    className="flex items-center space-x-3 group"
-                  >
-                    <input
-                      type="radio"
-                      name="sort"
-                      className="form-radio h-5 w-5 border-white/30 bg-white/10 text-indigo-400 focus:ring-indigo-400 focus:ring-offset-0"
-                      onChange={() => {
-                        HandleMovieSortBy(category.value);
-                      }}
-                    />
-                    <span className="text-sm text-white/90 group-hover:text-white transition-colors">
-                      {category.name}
-                    </span>
-                  </label>
+            {value === "tvshows" && (
+              <div className="space-y-4">
+                <h4 className="text-sm font-semibold text-white/80">
+                  Tv-Shows Filters
+                </h4>
+                {TvShowsConst.map((tv, index) => (
+                  <div className="space-y-3" key={index}>
+                    <label className="flex items-center space-x-3 group">
+                      <input
+                        type="checkbox"
+                        // value={tv.value}
+                        className="form-checkbox h-5 w-5 rounded border-white/30 bg-white/10 text-indigo-400 focus:ring-indigo-400 focus:ring-offset-0"
+                        onChange={() => HandleTvCategory(tv)}
+                      />
+                      <span className="text-sm text-white/90 group-hover:text-white transition-colors">
+                        {tv.name}
+                      </span>
+                    </label>
+                  </div>
                 ))}
               </div>
-            </div>
+            )}
+
+            {value === "Movies" && (
+              <div className="space-y-4">
+                <h4 className="text-sm font-semibold text-white/80">
+                  {" "}
+                  Mivies Sort By
+                </h4>
+                <div className="space-y-3">
+                  {MoviesCategory.map((category, index) => (
+                    <label
+                      key={index}
+                      className="flex items-center space-x-3 group"
+                    >
+                      <input
+                        type="radio"
+                        name="sort"
+                        className="form-radio h-5 w-5 border-white/30 bg-white/10 text-indigo-400 focus:ring-indigo-400 focus:ring-offset-0"
+                        onChange={() => {
+                          HandleMovieSortBy(category.value);
+                        }}
+                      />
+                      <span className="text-sm text-white/90 group-hover:text-white transition-colors">
+                        {category.name}
+                      </span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
           <div className="space-y-4">
