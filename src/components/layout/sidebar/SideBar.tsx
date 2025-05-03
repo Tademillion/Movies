@@ -10,7 +10,7 @@ export interface TvshowsType {
 
 interface Props {
   handelCheck: (genre_id: number) => void;
-  HandleTvCategory: (data: string) => void;
+  HandleTvCategory: (data: TvshowsType) => void;
 }
 
 const SideBar = ({ handelCheck, HandleTvCategory }: Props) => {
@@ -92,7 +92,7 @@ const SideBar = ({ handelCheck, HandleTvCategory }: Props) => {
                       type="checkbox"
                       // value={tv.value}
                       className="form-checkbox h-5 w-5 rounded border-white/30 bg-white/10 text-indigo-400 focus:ring-indigo-400 focus:ring-offset-0"
-                      onChange={() => HandleTvCategory(tv.value)}
+                      onChange={() => HandleTvCategory(tv)}
                     />
                     <span className="text-sm text-white/90 group-hover:text-white transition-colors">
                       {tv.name}

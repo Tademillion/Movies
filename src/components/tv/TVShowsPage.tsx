@@ -2,15 +2,19 @@ import { FC, useEffect, useState } from "react";
 import TVShowGrid from "./grid/TVShowGrid";
 export interface TvshowsEndpointProps {
   endpoint: string | null;
+  category?: string | null;
 }
 
-const TVShowsPage = ({ endpoint }: TvshowsEndpointProps) => {
+const TVShowsPage = ({ endpoint, category }: TvshowsEndpointProps) => {
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = 10; // This would come from your API
   return (
     <div className="container mx-auto">
       <div className="flex flex-col items-center mb-12">
-        <h1 className="text-4xl font-bold text-white mb-4">Popular TV Shows</h1>
+        <h1 className="text-4xl font-bold text-white mb-4">
+          {" "}
+          {category} TV Shows
+        </h1>
         <p className="text-white/70 text-lg max-w-2xl text-center">
           Discover and explore the most popular TV shows from around the world.
         </p>

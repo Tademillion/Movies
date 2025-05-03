@@ -3,7 +3,7 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import ErrorPage from "./components/common/ErrorPage";
 import Footer from "./components/layout/footer/Footer";
 import Navbar from "./components/layout/navbar/Navbar";
-import SideBar from "./components/layout/sidebar/SideBar";
+import SideBar, { TvshowsType } from "./components/layout/sidebar/SideBar";
 import ListsPage from "./components/lists/ListsPage";
 import MoviesPage from "./components/movies/MoviesPage";
 import PeopleGrid from "./components/people/grid/PeopleGrid";
@@ -11,6 +11,7 @@ import TVShowsPage from "./components/tv/TVShowsPage";
 function App() {
   const [genre, setGenre] = useState<number | null>(null);
   const [tvcategory, setTvCategory] = useState<string | null>(null);
+  const [tvshowsCategory, setTvshowsCategory] = useState<string>("Popular");
 
   return (
     <Router>
@@ -23,8 +24,9 @@ function App() {
             handelCheck={(genre_id: number) => {
               setGenre(genre_id);
             }}
-            HandleTvCategory={(endpoint: string) => {
-              setTvCategory(endpoint);
+            HandleTvCategory={(endpoint: TvshowsType) => {
+              setTvCategory(endpoint.value);
+              setTvshowsCategory(endpoint.name);
             }}
           />
           <main className="flex-1 p-8 mt-20 mx-5 bg-red bg-white/5 backdrop-blur-sm rounded-xl shadow-2xl border border-white/10">
@@ -38,7 +40,12 @@ function App() {
                 <Route path="/people" element={<PeopleGrid />} />
                 <Route
                   path="/tv-shows"
-                  element={<TVShowsPage endpoint={tvcategory} />}
+                  element={
+                    <TVShowsPage
+                      category={tvshowsCategory}
+                      endpoint={tvcategory}
+                    />
+                  }
                 />
                 <Route path="/lists" element={<ListsPage />} />
                 <Route path="*" element={<ErrorPage errorType="404" />} />
