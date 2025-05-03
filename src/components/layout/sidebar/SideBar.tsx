@@ -20,7 +20,7 @@ const SideBar = ({
   HandleTvCategory,
   HandleMovieSortBy,
 }: Props) => {
-  const [value, setValue] = useState();
+  const [value, setValue] = useState("");
 
   const { error, genre, isLoading } = Genras();
   {
@@ -116,7 +116,9 @@ const SideBar = ({
                         type="checkbox"
                         // value={tv.value}
                         className="form-checkbox h-5 w-5 rounded border-white/30 bg-white/10 text-indigo-400 focus:ring-indigo-400 focus:ring-offset-0"
-                        onChange={() => HandleTvCategory(tv)}
+                        onChange={(event) => {
+                          if (event.target.checked) HandleTvCategory(tv);
+                        }}
                       />
                       <span className="text-sm text-white/90 group-hover:text-white transition-colors">
                         {tv.name}
