@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import tvShowapiClient from "../../../services/tvShowapiClient";
-import { FetchTvShowsRespone, TVShow } from "../../../types/api.types";
+ import { FetchTvShowsRespone, TVShow } from "../../../types/api.types";
 import { TvshowsEndpointProps } from "../TVShowsPage";
+import apiClient from "../../../services/apiClient";
 
 const UseTvShows=({endpoint}:TvshowsEndpointProps)=>{
     const [tvShows, setTVShows] = useState<TVShow[]>([]);
@@ -11,17 +11,17 @@ const UseTvShows=({endpoint}:TvshowsEndpointProps)=>{
     useEffect(() => {
       
       setIsLoading(true);
-      tvShowapiClient
-        .get<FetchTvShowsRespone>(endpoint?endpoint:"popular")
+      apiClient
+        .get<FetchTvShowsRespone>(endpoint?"tv/"+endpoint:"tv/popular")
         .then((response) => {
          
-          setTVShows(response.data.results);
-       
+          setTVShows(response.data.results); 
           setIsLoading(false);
          
         })
         .catch((error) => {
           setError(error);
+          setIsLoading(false)
         });
     }, [endpoint]);
      return {tvShows,isLoading,error}

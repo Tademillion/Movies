@@ -3,9 +3,11 @@ import LoadingSpinner from "../../common/LoadingSpinner";
 import ErrorPage from "../../common/ErrorPage";
 import UseTvShows from "../hooks/UseTvShows";
 import { TvshowsEndpointProps } from "../TVShowsPage";
+import UseTvShowsGeneric from "../hooks/UseTvShowsgeneric";
 
 const TVShowGrid = (endpoint: TvshowsEndpointProps) => {
-  const { error, isLoading, tvShows } = UseTvShows(endpoint);
+  // const { error, isLoading, tvShows } = UseTvShows(endpoint);
+  const { data: tvShows, error, isLoading } = UseTvShowsGeneric(endpoint);
   if (isLoading) {
     return (
       <div className="min-h-[60vh] flex items-center justify-center">

@@ -8,11 +8,11 @@ interface ActiveTabProps {
 const Navbar = ({ activeTab, incomingtab }: ActiveTabProps) => {
   const [active, setActiveTab] = useState("");
   useEffect(() => {
-    console.log("existing tab ", active);
+    // console.log("existing tab ", active);
     activeTab(active);
   }, [active]);
   useEffect(() => {
-    console.log("incoming tab is", incomingtab);
+    // console.log("incoming tab is", incomingtab);
     activeTab(incomingtab);
   }, [incomingtab]);
 
