@@ -1,15 +1,20 @@
-import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 interface ActiveTabProps {
   activeTab: (tabname: string) => void;
+  incomingtab: string;
 }
 
-const Navbar = ({ activeTab }: ActiveTabProps) => {
-  // const [active, setActiveTab] = useState("");
-  // const handleTabClick = (tabName: string) => {
-  //   setActiveTab(tabName);
-  //   console.log(tabName);
-  // };
+const Navbar = ({ activeTab, incomingtab }: ActiveTabProps) => {
+  const [active, setActiveTab] = useState("");
+  useEffect(() => {
+    console.log("existing tab ", active);
+    activeTab(active);
+  }, [active]);
+  useEffect(() => {
+    console.log("incoming tab is", incomingtab);
+    activeTab(incomingtab);
+  }, [incomingtab]);
 
   return (
     <div>
@@ -49,7 +54,7 @@ const Navbar = ({ activeTab }: ActiveTabProps) => {
               <Link
                 to="/movies"
                 className="inline-block text-white/90 hover:text-gray-100 font-medium transition-colors duration-300 relative overflow-hidden group"
-                onClick={() => activeTab("Movies")}
+                onClick={() => setActiveTab("Movies")}
               >
                 Movies
                 <span className="absolute bottom-0 left-0 w-0 h-[3px] bg-white transition-all duration-300 origin-left group-hover:w-full"></span>
@@ -57,7 +62,7 @@ const Navbar = ({ activeTab }: ActiveTabProps) => {
               <Link
                 to="/tv-shows"
                 className="inline-block text-white/90 hover:text-white font-medium transition-colors duration-300 relative overflow-hidden group"
-                onClick={() => activeTab("Tvshows")}
+                onClick={() => setActiveTab("Tvshows")}
               >
                 TV Shows
                 <span className="absolute bottom-0 left-0 w-0 h-[3px] bg-white transition-all duration-300 origin-left group-hover:w-full"></span>
@@ -65,7 +70,7 @@ const Navbar = ({ activeTab }: ActiveTabProps) => {
               <Link
                 to="/people"
                 className="inline-block text-white/90 hover:text-white font-medium transition-colors duration-300 relative overflow-hidden group"
-                onClick={() => activeTab("People")}
+                onClick={() => setActiveTab("People")}
               >
                 People
                 <span className="absolute bottom-0 left-0 w-0 h-[3px] bg-white transition-all duration-300 origin-left group-hover:w-full"></span>

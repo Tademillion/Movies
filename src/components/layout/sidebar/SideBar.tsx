@@ -1,9 +1,9 @@
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { MoviesCategory, TvShowsConst } from "../../../constants/constants";
 import ErrorPage from "../../common/ErrorPage";
 import LoadingSpinner from "../../common/LoadingSpinner";
 import Genras from "./genras";
-import { MoviesCategory, TvShowsConst } from "../../../constants/constants";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 export interface TvshowsType {
   name: string;
   value: string;
@@ -14,6 +14,7 @@ interface Props {
   HandleTvCategory: (data: TvshowsType) => void;
   HandleMovieSortBy: (data: string) => void;
   activeTab: string;
+  handleactiveTabs: (tabs: string) => void;
 }
 
 const SideBar = ({
@@ -21,9 +22,8 @@ const SideBar = ({
   HandleTvCategory,
   HandleMovieSortBy,
   activeTab,
+  handleactiveTabs,
 }: Props) => {
-  const [value, setValue] = useState("");
-
   const { error, genre, isLoading } = Genras();
   {
     isLoading && <LoadingSpinner />;
@@ -34,17 +34,17 @@ const SideBar = ({
   const Navigate = useNavigate();
 
   useEffect(() => {
-    if (value === "Tvshows" || activeTab === "Tvshows") {
+    if (activeTab === "Tvshows") {
       Navigate("/tv-shows");
     }
-    if (value === "Movies" || activeTab === "Movies") {
+    if (activeTab === "Movies") {
       Navigate("/movies");
     }
-    if (value === "People" || activeTab === "People") {
+    if (activeTab === "People") {
       Navigate("/people");
     }
-    console.log(activeTab);
-  }, [value, activeTab]);
+    // console.log(activeTab);
+  }, [activeTab]);
   return (
     <div>
       <aside className="top-15 sticky w-64 h-screen p-6 bg-gradient-to-b from-indigo-900/90 via-purple-900/90 to-pink-900/90 backdrop-blur-sm border-r border-white/10">
@@ -65,10 +65,10 @@ const SideBar = ({
                     <input
                       type="radio"
                       name="category"
-                      checked={value === category || activeTab === category} // Compare with the state
+                      checked={activeTab === category} // Compare with the state
                       value={category}
                       onChange={() => {
-                        setValue(category);
+                        handleactiveTabs(category);
                       }}
                       className="form-radio h-5 w-5 border-white/30 bg-white/10 text-indigo-400 focus:ring-indigo-400 focus:ring-offset-0"
                     />
@@ -79,7 +79,7 @@ const SideBar = ({
                 ))}
               </div>
             </div>
-            {(value === "Movies" || activeTab === "Movies") && (
+            {activeTab === "Movies" && (
               <div className="space-y-4">
                 <h4 className="text-sm font-semibold text-white/80">
                   {" "}
@@ -107,7 +107,7 @@ const SideBar = ({
               </div>
             )}
 
-            {(value === "Tvshows" || activeTab === "Tvshows") && (
+            {activeTab === "Tvshows" && (
               <div className="space-y-4">
                 <h4 className="text-sm font-semibold text-white/80">
                   Tv-Shows Filters
@@ -132,7 +132,7 @@ const SideBar = ({
               </div>
             )}
 
-            {(value === "Movies" || activeTab === "Movies") && (
+            {activeTab === "Movies" && (
               <div className="space-y-4">
                 <h4 className="text-sm font-semibold text-white/80">
                   {" "}
