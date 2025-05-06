@@ -16,7 +16,7 @@ const TVShowGrid = (endpoint: TvshowsEndpointProps) => {
   }
   if (error) {
     console.log(error);
-    return <ErrorPage errorType="network" message={error} />;
+    return <ErrorPage errorType={error} />;
   }
   if (!tvShows.length) {
     return <ErrorPage errorType="generic" message="No TV shows found" />;

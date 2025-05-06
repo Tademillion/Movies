@@ -9,7 +9,7 @@ export interface FetchRespone<T>{
 const UseData=<T>(endpoint:string)=>{
     const [data, setData] = useState<T[]>([]);
     const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState<string | null>(null);
+    const [error, setError] = useState<any>(null);
     //  console.log("usetv shows",endpoint)
     useEffect(() => {
       
@@ -21,7 +21,7 @@ const UseData=<T>(endpoint:string)=>{
           setIsLoading(false); 
         })
         .catch((error) => {
-          setError(error.message);
+           setError(error.status);
           setIsLoading(false)
         });
     }, [endpoint]);
