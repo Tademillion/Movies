@@ -1,28 +1,11 @@
-import { FC, useEffect, useState } from "react";
-import apiClient from "../../../services/apiClient";
+import { FC } from "react";
 import ErrorPage from "../../common/ErrorPage";
 import LoadingSpinner from "../../common/LoadingSpinner";
 import PeopleCard from "../card/PeopleCard";
-import { FetchPeopleRespone, PeopleGridProps } from "../../../types/api.types";
+import UsePeoples from "../hooks/Usepeoples";
 
 const PeopleGrid: FC = () => {
-  const [people, setPeople] = useState<PeopleGridProps[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    setIsLoading(true);
-    apiClient
-      .get<FetchPeopleRespone>("person/popular")
-      .then((Response) => {
-        // console.log(Response.data.results);
-        setPeople(Response.data.results);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        setError(error);
-      });
-  }, []);
+  const { people, error, isLoading } = UsePeoples();
   if (error) {
     return <ErrorPage errorType="404" message={error} />;
   }
