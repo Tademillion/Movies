@@ -7,7 +7,6 @@ export interface FetchRespone<T>{
     total_results:number
    }
 const UseData=<T>(endpoint:string)=>{
-
     const [data, setData] = useState<T[]>([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -17,11 +16,9 @@ const UseData=<T>(endpoint:string)=>{
       setIsLoading(true);
       apiClient
         .get<FetchRespone<T>>(endpoint)
-        .then((response) => {
-         
+        .then((response) => { 
           setData(response.data.results); 
-          setIsLoading(false);
-         
+          setIsLoading(false); 
         })
         .catch((error) => {
           setError(error);

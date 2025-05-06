@@ -1,11 +1,9 @@
-import { useState } from "react";
 import { TMDB_IMAGE_SIZES } from "../../../constants/api.constants";
 import { PeopleGridProps } from "../../../types/api.types";
 interface PropsPoeple {
   poeple: PeopleGridProps;
 }
 const PeopleCard = ({ poeple }: PropsPoeple) => {
-  const [hoveredWork, setHoveredWork] = useState<number | null>(null);
   return (
     <div className="group relative overflow-hidden rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 transition-all duration-300 hover:scale-105 hover:shadow-lg">
       {/* Main Profile Image */}
@@ -24,8 +22,6 @@ const PeopleCard = ({ poeple }: PropsPoeple) => {
                 <div
                   key={work.id}
                   className="flex items-start space-x-3 group/item"
-                  onMouseEnter={() => setHoveredWork(work.id)}
-                  onMouseLeave={() => setHoveredWork(null)}
                 >
                   <div className="w-16 h-24 flex-shrink-0 rounded overflow-hidden">
                     <img

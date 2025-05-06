@@ -1,4 +1,3 @@
-import React from "react";
 import { Movie } from "../../../types/api.types";
 import { TMDB_IMAGE_SIZES } from "../../../constants/api.constants";
 

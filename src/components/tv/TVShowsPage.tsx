@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { useState } from "react";
 import TVShowGrid from "./grid/TVShowGrid";
 export interface TvshowsEndpointProps {
   endpoint: string | null;
