@@ -2,13 +2,14 @@ import { FC } from "react";
 import ErrorPage from "../../common/ErrorPage";
 import LoadingSpinner from "../../common/LoadingSpinner";
 import PeopleCard from "../card/PeopleCard";
-import UsePeoples from "../hooks/UsePeoples"; //this is hooks
+import UsePeoples from "../hooks/UsePeoples";
 
 const PeopleGrid: FC = () => {
   const { people, error, isLoading } = UsePeoples();
   if (error) {
     return <ErrorPage errorType="404" message={error} />;
   }
+
   if (isLoading) {
     return (
       <div className="min-h-[60vh] flex items-center justify-center">
