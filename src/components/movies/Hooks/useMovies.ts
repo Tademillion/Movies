@@ -7,7 +7,7 @@ const UseMovies=( {genre_id,sortedBy} : GenreProps)=>{
     const [movies, setMovies] = useState<Movie[]>([]);
     const [isLoading, setIsLoading] = useState(false);
     const [Error, setError] = useState<string | null>(null);
-  const    getSortedResults=(data:   Movie[] , sortedBy: string | null): Movie[]=> {
+  const    getSortedResults=(data:   Movie[] , sortedBy?: string | null): Movie[]=> {
       if (!data || !data || !Array.isArray(data) || !sortedBy) {
         return data || []; // Or handle as needed
       }

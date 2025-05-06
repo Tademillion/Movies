@@ -8,7 +8,7 @@ import MovieCard from "./MovieCard";
 const MovieCardGrid = ({ genre_id, sortedBy }: GenreProps) => {
   // const { Error, movies, isLoading } = UseMovies({ genre_id, sortedBy });
   const { Error, isLoading, movies } = UseGenericMovies<Movie>(
-    "/discover/mosvie",
+    "/discover/movie",
     { genre_id, sortedBy },
     { params: { with_genres: genre_id } },
     [genre_id, sortedBy]

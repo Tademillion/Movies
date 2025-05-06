@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { FetchMovieRespone, Movie } from "../../../types/api.types";
 import apiClient from "../../../services/apiClient";
 import { GenreProps } from "../MoviesPage";
 import { AxiosRequestConfig } from "axios";
@@ -10,11 +9,10 @@ const [movies, setMovies] = useState<T[]>([]);
 // extends Record<string, any> the key must be string and value is any
     const [isLoading, setIsLoading] = useState(false);
     const [Error, setError] = useState<any >(null);
-    const    getSortedResults=(data:   T[] , sortedBy: string | null)=> {
+    const    getSortedResults=(data:   T[] , sortedBy?: string | null)=> {
          if (!data || !data || !Array.isArray(data) || !sortedBy) {
           return data || []; // Or handle as needed
         }
-       
         return [...data].sort((a, b) => {
           if (a[sortedBy] < b[sortedBy]) {
             return -1;
@@ -39,7 +37,6 @@ const [movies, setMovies] = useState<T[]>([]);
             setIsLoading(false);
           });
       }, Deps?[...Deps]: []);
-       return {movies,isLoading,Error}
-
+       return {movies,isLoading,Error} 
 }
  export default UseGenericMovies
