@@ -9,6 +9,7 @@ const PeopleGrid: FC = () => {
   if (error) {
     return <ErrorPage errorType="404" message={error} />;
   }
+
   if (isLoading) {
     return (
       <div className="min-h-[60vh] flex items-center justify-center">
