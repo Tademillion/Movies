@@ -74,5 +74,4 @@ const PeopleCard = ({ poeple }: PropsPoeple) => {
     </div>
   );
 };
-
 export default PeopleCard;
