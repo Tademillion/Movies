@@ -1,15 +1,26 @@
+import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+
 const Navbar = () => {
+  const [activeTab, setActiveTab] = useState("");
+  const location = useLocation();
+
+  const handleTabClick = (tabName: string) => {
+    setActiveTab(tabName);
+    console.log(`${tabName} clicked`);
+  };
+
   return (
     <div>
       <nav className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 py-4 fixed top-0 w-full z-50 shadow-lg">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between">
-            <a
-              href="/"
+            <Link
+              to="/"
               className="text-2xl font-bold text-white hover:text-indigo-200 transition-colors duration-300"
             >
               CineView
-            </a>
+            </Link>
 
             <div className="flex-1 max-w-xl mx-8 ">
               <div className="relative ">
@@ -34,30 +45,42 @@ const Navbar = () => {
               </div>
             </div>
             <div className="flex items-center space-x-6">
-              <a
-                href="/movies"
-                className="text-white/90 hover:text-white font-medium transition-colors duration-300"
+              <Link
+                to="/movies"
+                className="inline-block text-white/90 hover:text-gray-100 font-medium transition-colors duration-300 relative overflow-hidden group"
+                onClick={() => handleTabClick("movies")}
               >
                 Movies
-              </a>
-              <a
-                href="/tv-shows"
-                className="text-white/90 hover:text-white font-medium transition-colors duration-300"
+                <span className="absolute bottom-0 left-0 w-0 h-[3px] bg-white transition-all duration-300 origin-left group-hover:w-full"></span>
+              </Link>
+              <Link
+                to="/tv-shows"
+                className="inline-block text-white/90 hover:text-white font-medium transition-colors duration-300 relative overflow-hidden group"
+                onClick={() => handleTabClick("tv-shows")}
               >
                 TV Shows
-              </a>
-              <a
-                href="/people"
-                className="text-white/90 hover:text-white font-medium transition-colors duration-300"
+                <span className="absolute bottom-0 left-0 w-0 h-[3px] bg-white transition-all duration-300 origin-left group-hover:w-full"></span>
+              </Link>
+              <Link
+                to="/people"
+                className="inline-block text-white/90 hover:text-white font-medium transition-colors duration-300 relative overflow-hidden group"
+                onClick={() => handleTabClick("people")}
               >
                 People
-              </a>
-              <a
-                href="/lists"
-                className="text-white/90 hover:text-white font-medium transition-colors duration-300"
+                <span className="absolute bottom-0 left-0 w-0 h-[3px] bg-white transition-all duration-300 origin-left group-hover:w-full"></span>
+              </Link>
+              <Link
+                to="/lists"
+                className={`inline-block text-white/90  active:bg-black hover:text-white font-medium transition-colors duration-300 relative overflow-hidden group ${
+                  location.pathname === "/lists"
+                    ? "text-white border-b-4 border-red border-solid"
+                    : ""
+                }`}
+                onClick={() => handleTabClick("lists")}
               >
                 My List
-              </a>
+                <span className="absolute bottom-0 left-0 w-0 h-[3px] bg-white transition-all duration-300 origin-left group-hover:w-full"></span>
+              </Link>
             </div>
           </div>
         </div>

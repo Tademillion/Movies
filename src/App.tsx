@@ -13,7 +13,6 @@ function App() {
   const [tvcategory, setTvCategory] = useState<string | null>(null);
   const [tvshowsCategory, setTvshowsCategory] = useState<string>("Popular");
   const [MoviesSortedby, setMoviesSortedby] = useState<string | null>(null);
-  const [NavlinkValue, seNavLinkValue] = useState<string>("");
 
   return (
     <Router>

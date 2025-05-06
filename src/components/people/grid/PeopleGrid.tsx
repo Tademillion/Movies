@@ -15,7 +15,7 @@ const PeopleGrid: FC = () => {
     apiClient
       .get<FetchPeopleRespone>("person/popular")
       .then((Response) => {
-        console.log(Response.data.results);
+        // console.log(Response.data.results);
         setPeople(Response.data.results);
         setIsLoading(false);
       })

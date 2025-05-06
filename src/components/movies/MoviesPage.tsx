@@ -5,7 +5,7 @@ export interface GenreProps {
   sortedBy: string | null;
 }
 const MoviesPage = ({ genre_id, sortedBy }: GenreProps) => {
-  console.log(sortedBy);
+  // console.log(sortedBy);
   return (
     <>
       <h1 className="text-4xl font-bold text-white mb-8">Popular Movies</h1>
