@@ -53,11 +53,11 @@ const Navbar = ({ activeTab, incomingtab }: ActiveTabProps) => {
             <div className="flex items-center space-x-6">
               <Link
                 to="/movies"
-                className={`inline-block text-white/90 hover:text-white font-medium transition-colors duration-300 relative overflow-hidden group ${
-                  location.pathname === "/movies"
-                    ? "text-white border-b-4 border-red border-solid"
-                    : ""
-                }`}
+                // className={`inline-block text-white/90 hover:text-white font-medium transition-colors duration-300 relative overflow-hidden group ${
+                //   location.pathname === "/movies"
+                //     ? "text-white border-b-4 border-red border-solid"
+                //     : ""
+                // }`}
                 onClick={() => setActiveTab("Movies")}
               >
                 Movies
