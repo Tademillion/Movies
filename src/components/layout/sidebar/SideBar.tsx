@@ -13,12 +13,14 @@ interface Props {
   handelCheck: (genre_id: number) => void;
   HandleTvCategory: (data: TvshowsType) => void;
   HandleMovieSortBy: (data: string) => void;
+  activeTab: string;
 }
 
 const SideBar = ({
   handelCheck,
   HandleTvCategory,
   HandleMovieSortBy,
+  activeTab,
 }: Props) => {
   const [value, setValue] = useState("");
 
@@ -32,16 +34,17 @@ const SideBar = ({
   const Navigate = useNavigate();
 
   useEffect(() => {
-    if (value === "Tvshows") {
+    if (value === "Tvshows" || activeTab === "Tvshows") {
       Navigate("/tv-shows");
     }
-    if (value === "Movies") {
+    if (value === "Movies" || activeTab === "Movies") {
       Navigate("/movies");
     }
-    if (value === "People") {
+    if (value === "People" || activeTab === "People") {
       Navigate("/people");
     }
-  }, [value]);
+    console.log(activeTab);
+  }, [value, activeTab]);
   return (
     <div>
       <aside className="top-15 sticky w-64 h-screen p-6 bg-gradient-to-b from-indigo-900/90 via-purple-900/90 to-pink-900/90 backdrop-blur-sm border-r border-white/10">
@@ -62,7 +65,7 @@ const SideBar = ({
                     <input
                       type="radio"
                       name="category"
-                      checked={value === category} // Compare with the state
+                      checked={value === category || activeTab === category} // Compare with the state
                       value={category}
                       onChange={() => {
                         setValue(category);
@@ -76,7 +79,7 @@ const SideBar = ({
                 ))}
               </div>
             </div>
-            {value === "Movies" && (
+            {(value === "Movies" || activeTab === "Movies") && (
               <div className="space-y-4">
                 <h4 className="text-sm font-semibold text-white/80">
                   {" "}
@@ -104,7 +107,7 @@ const SideBar = ({
               </div>
             )}
 
-            {value === "Tvshows" && (
+            {(value === "Tvshows" || activeTab === "Tvshows") && (
               <div className="space-y-4">
                 <h4 className="text-sm font-semibold text-white/80">
                   Tv-Shows Filters
@@ -129,7 +132,7 @@ const SideBar = ({
               </div>
             )}
 
-            {value === "Movies" && (
+            {(value === "Movies" || activeTab === "Movies") && (
               <div className="space-y-4">
                 <h4 className="text-sm font-semibold text-white/80">
                   {" "}

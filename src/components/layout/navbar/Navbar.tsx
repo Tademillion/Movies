@@ -1,14 +1,15 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+interface ActiveTabProps {
+  activeTab: (tabname: string) => void;
+}
 
-const Navbar = () => {
-  const [activeTab, setActiveTab] = useState("");
-  const location = useLocation();
-
-  const handleTabClick = (tabName: string) => {
-    setActiveTab(tabName);
-    console.log(`${tabName} clicked`);
-  };
+const Navbar = ({ activeTab }: ActiveTabProps) => {
+  // const [active, setActiveTab] = useState("");
+  // const handleTabClick = (tabName: string) => {
+  //   setActiveTab(tabName);
+  //   console.log(tabName);
+  // };
 
   return (
     <div>
@@ -48,7 +49,7 @@ const Navbar = () => {
               <Link
                 to="/movies"
                 className="inline-block text-white/90 hover:text-gray-100 font-medium transition-colors duration-300 relative overflow-hidden group"
-                onClick={() => handleTabClick("movies")}
+                onClick={() => activeTab("Movies")}
               >
                 Movies
                 <span className="absolute bottom-0 left-0 w-0 h-[3px] bg-white transition-all duration-300 origin-left group-hover:w-full"></span>
@@ -56,7 +57,7 @@ const Navbar = () => {
               <Link
                 to="/tv-shows"
                 className="inline-block text-white/90 hover:text-white font-medium transition-colors duration-300 relative overflow-hidden group"
-                onClick={() => handleTabClick("tv-shows")}
+                onClick={() => activeTab("Tvshows")}
               >
                 TV Shows
                 <span className="absolute bottom-0 left-0 w-0 h-[3px] bg-white transition-all duration-300 origin-left group-hover:w-full"></span>
@@ -64,19 +65,19 @@ const Navbar = () => {
               <Link
                 to="/people"
                 className="inline-block text-white/90 hover:text-white font-medium transition-colors duration-300 relative overflow-hidden group"
-                onClick={() => handleTabClick("people")}
+                onClick={() => activeTab("People")}
               >
                 People
                 <span className="absolute bottom-0 left-0 w-0 h-[3px] bg-white transition-all duration-300 origin-left group-hover:w-full"></span>
               </Link>
               <Link
                 to="/lists"
-                className={`inline-block text-white/90  active:bg-black hover:text-white font-medium transition-colors duration-300 relative overflow-hidden group ${
+                className={`inline-block text-white/90   hover:text-white font-medium transition-colors duration-300 relative overflow-hidden group ${
                   location.pathname === "/lists"
                     ? "text-white border-b-4 border-red border-solid"
                     : ""
                 }`}
-                onClick={() => handleTabClick("lists")}
+                onClick={() => activeTab("lists")}
               >
                 My List
                 <span className="absolute bottom-0 left-0 w-0 h-[3px] bg-white transition-all duration-300 origin-left group-hover:w-full"></span>
