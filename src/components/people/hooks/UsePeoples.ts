@@ -1,5 +1,5 @@
 import { PeopleGridProps } from "../../../types/api.types";
-import UseData from "../../UseData";
+ import UseData from "../../UseData";
 
 const UsePeoples =()=> UseData<PeopleGridProps>("person/popular");
 
