@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { useState } from "react";
 import PeopleGrid from "./grid/PeopleGrid";
 
 const PeoplePage = () => {

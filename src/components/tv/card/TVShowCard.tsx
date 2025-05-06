@@ -1,14 +1,5 @@
 import { TMDB_IMAGE_SIZES } from "../../../constants/api.constants";
 import { TVShow } from "../../../types/api.types";
-
-interface TVShowCardProps {
-  id: number;
-  name: string;
-  poster_path: string;
-  vote_average: number;
-  first_air_date: string;
-  overview: string;
-}
 interface TvShows {
   Tv: TVShow;
 }

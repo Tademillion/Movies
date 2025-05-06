@@ -1,5 +1,3 @@
-import React from "react";
-
 const MovieCardSkeleton = () => {
   return (
     <div className="animate-pulse overflow-hidden rounded-lg shadow-lg">

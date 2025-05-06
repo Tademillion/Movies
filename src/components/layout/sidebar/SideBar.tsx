@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { MoviesCategory, TvShowsConst } from "../../../constants/constants";
 import ErrorPage from "../../common/ErrorPage";
@@ -32,7 +32,6 @@ const SideBar = ({
     error && <ErrorPage />;
   }
   const Navigate = useNavigate();
-
   useEffect(() => {
     if (activeTab === "Tvshows") {
       Navigate("/tv-shows");
@@ -43,7 +42,6 @@ const SideBar = ({
     if (activeTab === "People") {
       Navigate("/people");
     }
-    // console.log(activeTab);
   }, [activeTab]);
   return (
     <div>
