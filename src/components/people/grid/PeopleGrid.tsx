@@ -2,7 +2,7 @@ import { FC } from "react";
 import ErrorPage from "../../common/ErrorPage";
 import LoadingSpinner from "../../common/LoadingSpinner";
 import PeopleCard from "../card/PeopleCard";
-import UsePeoples from "../hooks/Usepeoples";
+import UsePeoples from "../hooks/UsePeoples";
 
 const PeopleGrid: FC = () => {
   const { people, error, isLoading } = UsePeoples();
