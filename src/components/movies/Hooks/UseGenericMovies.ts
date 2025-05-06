@@ -3,16 +3,18 @@ import { FetchMovieRespone, Movie } from "../../../types/api.types";
 import apiClient from "../../../services/apiClient";
 import { GenreProps } from "../MoviesPage";
 import { AxiosRequestConfig } from "axios";
+import { FetchRespone } from "../../UseData";
 
-const UseGenericMovies=({genre_id,sortedBy}: GenreProps,requestConfig?:AxiosRequestConfig,Deps?:any[])=>{
-const [movies, setMovies] = useState<Movie[]>([]);
+const UseGenericMovies=<T extends Record<string, any>>( endpoint:string,  {genre_id,sortedBy}: GenreProps,requestConfig?:AxiosRequestConfig,Deps?:any[])=>{
+const [movies, setMovies] = useState<T[]>([]);
+// extends Record<string, any> the key must be string and value is any
     const [isLoading, setIsLoading] = useState(false);
-    const [Error, setError] = useState<string | null>(null);
-    const    getSortedResults=(data:   Movie[] , sortedBy: string | null): Movie[]=> {
-        if (!data || !data || !Array.isArray(data) || !sortedBy) {
+    const [Error, setError] = useState<any >(null);
+    const    getSortedResults=(data:   T[] , sortedBy: string | null)=> {
+         if (!data || !data || !Array.isArray(data) || !sortedBy) {
           return data || []; // Or handle as needed
         }
-      
+       
         return [...data].sort((a, b) => {
           if (a[sortedBy] < b[sortedBy]) {
             return -1;
@@ -26,13 +28,14 @@ const [movies, setMovies] = useState<Movie[]>([]);
     useEffect(() => {
         setIsLoading(true);
         apiClient
-          .get<FetchMovieRespone>("/discover/movie",{...requestConfig})
+          .get<FetchRespone<T>>(endpoint,{...requestConfig})
           .then((response) => {
             setMovies(getSortedResults(response.data.results,sortedBy));
             setIsLoading(false);
           })
           .catch((error) => {
-            setError(error);
+            setError(error.status);
+            // console.log(error.status)
             setIsLoading(false);
           });
       }, Deps?[...Deps]: []);

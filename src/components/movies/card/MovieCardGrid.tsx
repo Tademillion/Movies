@@ -1,12 +1,14 @@
+import { Movie } from "../../../types/api.types";
+import ErrorPage from "../../common/ErrorPage";
 import LoadingSpinner from "../../common/LoadingSpinner";
 import UseGenericMovies from "../Hooks/UseGenericMovies";
-import UseMovies from "../Hooks/useMovies";
 import { GenreProps } from "../MoviesPage";
 import MovieCard from "./MovieCard";
 
 const MovieCardGrid = ({ genre_id, sortedBy }: GenreProps) => {
   // const { Error, movies, isLoading } = UseMovies({ genre_id, sortedBy });
-  const { Error, isLoading, movies } = UseGenericMovies(
+  const { Error, isLoading, movies } = UseGenericMovies<Movie>(
+    "/discover/mosvie",
     { genre_id, sortedBy },
     { params: { with_genres: genre_id } },
     [genre_id, sortedBy]
@@ -15,17 +17,7 @@ const MovieCardGrid = ({ genre_id, sortedBy }: GenreProps) => {
     return <LoadingSpinner />;
   }
   if (Error) {
-    return (
-      <div className="text-center py-8">
-        <p className="text-red-500">{Error}</p>
-        <button
-          onClick={() => window.location.reload()}
-          className="mt-4 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
-        >
-          Try Again
-        </button>
-      </div>
-    );
+    return <ErrorPage errorType={Error} message={""} />;
   }
   if (movies.length === 0) {
     return (
