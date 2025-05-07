@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { MoviesCategory, TvShowsConst } from "../../../constants/constants";
 import ErrorPage from "../../common/ErrorPage";
 import LoadingSpinner from "../../common/LoadingSpinner";
@@ -151,12 +151,12 @@ const SideBar = ({
           <div className="space-y-4">
             <h3 className="text-xl font-bold text-white">Quick Links</h3>
             <div className="space-y-2">
-              <a
-                href="/top250"
+              <Link
+                to="/top250"
                 className="block text-sm text-white/80 hover:text-white transition-colors py-2 px-3 rounded-lg hover:bg-white/10"
               >
                 Top 250 Movies
-              </a>
+              </Link>
               <a
                 href="/trending"
                 className="block text-sm text-white/80 hover:text-white transition-colors py-2 px-3 rounded-lg hover:bg-white/10"
