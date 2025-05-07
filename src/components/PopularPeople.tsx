@@ -1,9 +1,6 @@
-import { useState, useEffect } from "react";
-import apiClient from "../services/apiClient";
 import { motion } from "framer-motion";
-import { FaStar, FaFilm, FaTv, FaUser } from "react-icons/fa";
-import UseGenericMovies from "./movies/Hooks/UseGenericMovies";
-import { Movie, PeopleGridProps } from "../types/api.types";
+import { useState } from "react";
+import { FaFilm, FaTv, FaUser } from "react-icons/fa";
 import ErrorPage from "./common/ErrorPage";
 import UsePeoples from "./people/hooks/UsePeoples";
 

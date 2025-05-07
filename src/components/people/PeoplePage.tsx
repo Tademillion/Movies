@@ -3,7 +3,6 @@ import PeopleGrid from "./grid/PeopleGrid";
 
 const PeoplePage = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 10; // This would come from your API
 
   return (
     <div className="container mx-auto">

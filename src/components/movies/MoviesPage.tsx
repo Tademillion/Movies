@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import MovieCardGrid from "./card/MovieCardGrid";
 
 export interface GenreProps {

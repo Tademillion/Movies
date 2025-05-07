@@ -1,18 +1,17 @@
 import { useState } from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import PopularPeople from "./components/PopularPeople";
+import TopMovies from "./components/TopMovies";
+import TrendingMovies from "./components/TrendingMovies";
+import UpcomingMovies from "./components/UpcomingMovies";
 import ErrorPage from "./components/common/ErrorPage";
 import Footer from "./components/layout/footer/Footer";
 import Navbar from "./components/layout/navbar/Navbar";
 import SideBar, { TvshowsType } from "./components/layout/sidebar/SideBar";
 import ListsPage from "./components/lists/ListsPage";
 import MoviesPage from "./components/movies/MoviesPage";
-import PeopleGrid from "./components/people/grid/PeopleGrid";
-import TVShowsPage from "./components/tv/TVShowsPage";
-import TopMovies from "./components/TopMovies";
-import TrendingMovies from "./components/TrendingMovies";
-import UpcomingMovies from "./components/UpcomingMovies";
-import PopularPeople from "./components/PopularPeople";
 import PeoplePage from "./components/people/PeoplePage";
+import TVShowsPage from "./components/tv/TVShowsPage";
 
 function App() {
   const [genre, setGenre] = useState<number | null>(null);
