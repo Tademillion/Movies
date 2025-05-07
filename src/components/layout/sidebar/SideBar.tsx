@@ -157,24 +157,24 @@ const SideBar = ({
               >
                 Top 250 Movies
               </Link>
-              <a
-                href="/trending"
+              <Link
+                to="/trending"
                 className="block text-sm text-white/80 hover:text-white transition-colors py-2 px-3 rounded-lg hover:bg-white/10"
               >
                 Trending Now
-              </a>
-              <a
-                href="/upcoming"
+              </Link>
+              <Link
+                to="/upcoming"
                 className="block text-sm text-white/80 hover:text-white transition-colors py-2 px-3 rounded-lg hover:bg-white/10"
               >
                 Upcoming Releases
-              </a>
-              <a
-                href="/popular-people"
+              </Link>
+              <Link
+                to="/popular-people"
                 className="block text-sm text-white/80 hover:text-white transition-colors py-2 px-3 rounded-lg hover:bg-white/10"
               >
                 Popular People
-              </a>
+              </Link>
             </div>
           </div>
         </div>
