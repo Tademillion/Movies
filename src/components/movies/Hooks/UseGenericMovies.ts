@@ -4,7 +4,7 @@ import { GenreProps } from "../MoviesPage";
 import { AxiosRequestConfig } from "axios";
 import { FetchRespone } from "../../UseData";
 
-const UseGenericMovies=<T extends Record<string, any>>( endpoint:string,  {genre_id,sortedBy}: GenreProps,requestConfig?:AxiosRequestConfig,Deps?:any[])=>{
+const UseGenericMovies=<T extends Record<string, any>>( endpoint:string,  {sortedBy}: GenreProps,requestConfig?:AxiosRequestConfig,Deps?:any[])=>{
 const [data, setMovies] = useState<T[]>([]);
 // extends Record<string, any> the key must be string and value is any
     const [isLoading, setIsLoading] = useState(false);
