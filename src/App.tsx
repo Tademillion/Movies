@@ -9,6 +9,9 @@ import MoviesPage from "./components/movies/MoviesPage";
 import PeopleGrid from "./components/people/grid/PeopleGrid";
 import TVShowsPage from "./components/tv/TVShowsPage";
 import TopMovies from "./components/TopMovies";
+import TrendingMovies from "./components/TrendingMovies";
+import UpcomingMovies from "./components/UpcomingMovies";
+import PopularPeople from "./components/PopularPeople";
 
 function App() {
   const [genre, setGenre] = useState<number | null>(null);
@@ -73,6 +76,9 @@ function App() {
                 />
                 <Route path="/lists" element={<ListsPage />} />
                 <Route path="/top250" element={<TopMovies />} />
+                <Route path="/trending" element={<TrendingMovies />} />
+                <Route path="/upcoming" element={<UpcomingMovies />} />
+                <Route path="/popular-people" element={<PopularPeople />} />
                 <Route path="*" element={<ErrorPage errorType="404" />} />
               </Routes>
             </div>

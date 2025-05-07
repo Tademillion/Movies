@@ -1,8 +1,7 @@
-import { useState, useEffect } from "react";
-import apiClient from "../services/apiClient";
 import { motion } from "framer-motion";
-import { FaStar, FaPlay } from "react-icons/fa";
+import { FaPlay, FaStar } from "react-icons/fa";
 import { Movie } from "../types/api.types";
+import ErrorPage from "./common/ErrorPage";
 import UseGenericMovies from "./movies/Hooks/UseGenericMovies";
 
 const TopMovies = () => {
@@ -11,6 +10,10 @@ const TopMovies = () => {
     isLoading,
     data: movies,
   } = UseGenericMovies<Movie>("/movie/top_rated", {}, { params: {} });
+
+  if (Error) {
+    return <ErrorPage errorType={Error} />;
+  }
 
   if (isLoading) {
     return (
