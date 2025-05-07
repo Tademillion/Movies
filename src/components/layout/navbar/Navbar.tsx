@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 interface ActiveTabProps {
   activeTab: (tabname: string) => void;
   incomingtab: string;
@@ -7,12 +7,21 @@ interface ActiveTabProps {
 
 const Navbar = ({ activeTab, incomingtab }: ActiveTabProps) => {
   const [active, setActiveTab] = useState("");
+  const Navigate = useNavigate();
   useEffect(() => {
     // console.log("existing tab ", active);
     activeTab(active);
   }, [active]);
   useEffect(() => {
-    // console.log("incoming tab is", incomingtab);
+    if (incomingtab === "Tvshows") {
+      Navigate("/tv-shows");
+    }
+    if (incomingtab === "Movies") {
+      Navigate("/movies");
+    }
+    if (incomingtab === "People") {
+      Navigate("/people");
+    }
     activeTab(incomingtab);
   }, [incomingtab]);
 

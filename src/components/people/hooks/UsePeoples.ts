@@ -1,6 +1,7 @@
 import { PeopleGridProps } from "../../../types/api.types";
-import UseData from "../../UseData";
-
-const UsePeoples =()=> UseData<PeopleGridProps>("person/popular");
+import UseGenericMovies from "../../movies/Hooks/UseGenericMovies";
+ import UseData from "../../UseData";
+const endpoint="person/popular"
+const UsePeoples =()=> UseGenericMovies<PeopleGridProps>("person/popular",{},{params:{}});
 
  export default UsePeoples

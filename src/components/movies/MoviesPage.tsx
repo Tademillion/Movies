@@ -1,8 +1,8 @@
 import MovieCardGrid from "./card/MovieCardGrid";
 
 export interface GenreProps {
-  genre_id: number | null;
-  sortedBy: string | null;
+  genre_id?: number | null;
+  sortedBy?: string | null;
 }
 const MoviesPage = ({ genre_id, sortedBy }: GenreProps) => {
   // console.log(sortedBy);

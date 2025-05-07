@@ -5,7 +5,7 @@ import PeopleCard from "../card/PeopleCard";
 import UsePeoples from "../hooks/UsePeoples";
 
 const PeopleGrid: FC = () => {
-  const { data: people, error, isLoading } = UsePeoples();
+  const { movies: people, Error: error, isLoading } = UsePeoples();
   if (error) {
     return <ErrorPage errorType="404" message={error} />;
   }
