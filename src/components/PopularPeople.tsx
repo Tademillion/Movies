@@ -5,6 +5,7 @@ import { FaStar, FaFilm, FaTv, FaUser } from "react-icons/fa";
 import UseGenericMovies from "./movies/Hooks/UseGenericMovies";
 import { Movie, PeopleGridProps } from "../types/api.types";
 import ErrorPage from "./common/ErrorPage";
+import UsePeoples from "./people/hooks/UsePeoples";
 
 interface Person {
   id: number;
@@ -20,15 +21,8 @@ interface Person {
 }
 
 const PopularPeople = () => {
-  // const [people, setPeople] = useState<Person[]>([]);
-  // const [loading, setLoading] = useState(true);
   const [selectedDepartment, setSelectedDepartment] = useState<string>("all");
-
-  const {
-    Error,
-    isLoading,
-    data: people,
-  } = UseGenericMovies<PeopleGridProps>("/person/popular", {}, {}, []);
+  const { Error, isLoading, data: people } = UsePeoples();
 
   const departments = ["all", "Acting", "Directing", "Writing", "Production"];
 
@@ -85,7 +79,7 @@ const PopularPeople = () => {
         </div>
 
         {/* People Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-6">
           {filteredPeople.map((person, index) => (
             <motion.div
               key={person.id}
