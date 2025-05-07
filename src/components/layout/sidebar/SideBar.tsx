@@ -31,18 +31,6 @@ const SideBar = ({
   {
     error && <ErrorPage />;
   }
-  const Navigate = useNavigate();
-  useEffect(() => {
-    if (activeTab === "Tvshows") {
-      Navigate("/tv-shows");
-    }
-    if (activeTab === "Movies") {
-      Navigate("/movies");
-    }
-    if (activeTab === "People") {
-      Navigate("/people");
-    }
-  }, [activeTab]);
   return (
     <div>
       <aside className="top-15 sticky w-64 h-screen p-6 bg-gradient-to-b from-indigo-900/90 via-purple-900/90 to-pink-900/90 backdrop-blur-sm border-r border-white/10">
