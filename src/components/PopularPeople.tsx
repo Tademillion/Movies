@@ -1,7 +1,10 @@
-import { useState, useEffect } from 'react';
-import apiClient from '../services/apiClient';
-import { motion } from 'framer-motion';
-import { FaStar, FaFilm, FaTv, FaUser } from 'react-icons/fa';
+import { useState, useEffect } from "react";
+import apiClient from "../services/apiClient";
+import { motion } from "framer-motion";
+import { FaStar, FaFilm, FaTv, FaUser } from "react-icons/fa";
+import UseGenericMovies from "./movies/Hooks/UseGenericMovies";
+import { Movie, PeopleGridProps } from "../types/api.types";
+import ErrorPage from "./common/ErrorPage";
 
 interface Person {
   id: number;
@@ -17,34 +20,28 @@ interface Person {
 }
 
 const PopularPeople = () => {
-  const [people, setPeople] = useState<Person[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [selectedDepartment, setSelectedDepartment] = useState<string>('all');
+  // const [people, setPeople] = useState<Person[]>([]);
+  // const [loading, setLoading] = useState(true);
+  const [selectedDepartment, setSelectedDepartment] = useState<string>("all");
 
-  useEffect(() => {
-    const fetchPopularPeople = async () => {
-      try {
-        setLoading(true);
-        const response = await apiClient.get('/person/popular');
-        setPeople(response.data.results);
-        setLoading(false);
-      } catch (error) {
-        console.error('Error fetching popular people:', error);
-        setLoading(false);
-      }
-    };
+  const {
+    Error,
+    isLoading,
+    data: people,
+  } = UseGenericMovies<PeopleGridProps>("/person/popular", {}, {}, []);
 
-    fetchPopularPeople();
-  }, []);
-
-  const departments = ['all', 'Acting', 'Directing', 'Writing', 'Production'];
+  const departments = ["all", "Acting", "Directing", "Writing", "Production"];
 
   const filterPeopleByDepartment = (people: Person[]) => {
-    if (selectedDepartment === 'all') return people;
-    return people.filter(person => person.known_for_department === selectedDepartment);
+    if (selectedDepartment === "all") return people;
+    return people.filter(
+      (person) => person.known_for_department === selectedDepartment
+    );
   };
-
-  if (loading) {
+  if (Error) {
+    return <ErrorPage errorType="404" message={Error} />;
+  }
+  if (isLoading) {
     return (
       <div className="flex justify-center items-center min-h-screen">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-purple-500"></div>
@@ -68,7 +65,7 @@ const PopularPeople = () => {
             <FaUser className="text-4xl text-purple-500" />
             <h1 className="text-4xl font-bold text-white">Popular People</h1>
           </motion.div>
-          
+
           {/* Department Filter */}
           <div className="flex flex-wrap justify-center gap-2 mb-8">
             {departments.map((department) => (
@@ -77,8 +74,8 @@ const PopularPeople = () => {
                 onClick={() => setSelectedDepartment(department)}
                 className={`px-4 py-2 rounded-full transition-all duration-300 ${
                   selectedDepartment === department
-                    ? 'bg-purple-500 text-white'
-                    : 'bg-white/10 text-white/70 hover:bg-white/20'
+                    ? "bg-purple-500 text-white"
+                    : "bg-white/10 text-white/70 hover:bg-white/20"
                 }`}
               >
                 {department.charAt(0).toUpperCase() + department.slice(1)}
@@ -103,14 +100,14 @@ const PopularPeople = () => {
                   alt={person.name}
                   className="w-full h-[400px] object-cover"
                 />
-                
+
                 {/* Hover Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div className="absolute bottom-0 p-6 w-full">
                     <h3 className="text-white text-xl font-bold mb-2">
                       {person.name}
                     </h3>
-                    
+
                     <div className="flex items-center space-x-2 mb-3">
                       <span className="text-purple-400 text-sm font-semibold">
                         {person.known_for_department}
@@ -118,10 +115,12 @@ const PopularPeople = () => {
                     </div>
 
                     <div className="space-y-2 mb-4">
-                      <h4 className="text-white/80 text-sm font-semibold">Known For:</h4>
+                      <h4 className="text-white/80 text-sm font-semibold">
+                        Known For:
+                      </h4>
                       {person.known_for.slice(0, 3).map((work, idx) => (
                         <div key={idx} className="flex items-center space-x-2">
-                          {work.media_type === 'movie' ? (
+                          {work.media_type === "movie" ? (
                             <FaFilm className="text-yellow-400 text-sm" />
                           ) : (
                             <FaTv className="text-blue-400 text-sm" />
@@ -158,4 +157,4 @@ const PopularPeople = () => {
   );
 };
 
-export default PopularPeople; 
+export default PopularPeople;
