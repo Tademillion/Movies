@@ -1,12 +1,29 @@
+import { TVShow } from "../../../types/api.types";
 import ErrorPage from "../../common/ErrorPage";
 import LoadingSpinner from "../../common/LoadingSpinner";
+import UseGenericMovies from "../../movies/Hooks/UseGenericMovies";
 import TVShowCard from "../card/TVShowCard";
-import UseTvShowsGeneric from "../hooks/UseTvShowsgeneric";
 import { TvshowsEndpointProps } from "../TVShowsPage";
 
-const TVShowGrid = (endpoint: TvshowsEndpointProps) => {
+const TVShowGrid = ({ endpoint, currentPage }: TvshowsEndpointProps) => {
   // const { error, isLoading, tvShows } = UseTvShows(endpoint);
-  const { data: tvShows, error, isLoading } = UseTvShowsGeneric(endpoint);
+  // const {
+  //   data: tvShows,
+  //   error,
+  //   isLoading,
+  // } = UseTvShowsGeneric({ endpoint, currentPage });
+
+  const {
+    data: tvShows,
+    Error: error,
+    isLoading,
+  } = UseGenericMovies<TVShow>(
+    `/tv/${endpoint}`,
+    {},
+    { params: { page: currentPage } },
+    [endpoint, currentPage]
+  );
+
   if (isLoading) {
     return (
       <div className="min-h-[60vh] flex items-center justify-center">

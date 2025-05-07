@@ -16,7 +16,7 @@ import PeoplePage from "./components/people/PeoplePage";
 
 function App() {
   const [genre, setGenre] = useState<number | null>(null);
-  const [tvcategory, setTvCategory] = useState<string | null>(null);
+  const [tvcategory, setTvCategory] = useState<string>("popular");
   const [tvshowsCategory, setTvshowsCategory] = useState<string>("Popular");
   const [MoviesSortedby, setMoviesSortedby] = useState<string | null>(null);
   const [active, setActiveTab] = useState("Movies");
