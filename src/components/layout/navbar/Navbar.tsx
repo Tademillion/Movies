@@ -34,14 +34,14 @@ const Navbar = ({ activeTab, incomingtab }: ActiveTabProps) => {
               to="/"
               className="text-2xl font-bold text-white hover:text-indigo-200 transition-colors duration-300"
             >
-              CineView
+              CineVerse
             </Link>
 
             <div className="flex-1 max-w-xl mx-8 ">
               <div className="relative ">
                 <input
                   type="text"
-                  placeholder="Search movies..."
+                  placeholder="Search ..."
                   className="w-full bg-white/20 backdrop-blur-sm text-white rounded-full py-2 px-4 pl-10 focus:outline-none focus:ring-2 focus:ring-white/50 placeholder-white/70"
                 />
                 <svg

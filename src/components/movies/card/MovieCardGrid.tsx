@@ -5,7 +5,7 @@ import UseGenericMovies from "../Hooks/UseGenericMovies";
 import { GenreProps } from "../MoviesPage";
 import MovieCard from "./MovieCard";
 
-const MovieCardGrid = ({ genre_id, sortedBy }: GenreProps) => {
+const MovieCardGrid = ({ genre_id, sortedBy, page }: GenreProps) => {
   // const { Error, movies, isLoading } = UseMovies({ genre_id, sortedBy });
   const {
     Error,
@@ -14,8 +14,8 @@ const MovieCardGrid = ({ genre_id, sortedBy }: GenreProps) => {
   } = UseGenericMovies<Movie>(
     "/discover/movie",
     { genre_id, sortedBy },
-    { params: { with_genres: genre_id } },
-    [genre_id, sortedBy]
+    { params: { with_genres: genre_id, page: page } },
+    [genre_id, sortedBy, page]
   );
   if (isLoading) {
     return <LoadingSpinner />;

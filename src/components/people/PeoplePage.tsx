@@ -15,25 +15,31 @@ const PeoplePage = () => {
         </p>
       </div>
 
-      <PeopleGrid />
+      <div>
+        <PeopleGrid currentPage={currentPage} />
+      </div>
 
-      <div className="flex justify-center items-center space-x-4 mt-8">
+      <div className="flex justify-center items-center space-x-4 mt-5">
         <button
-          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-          disabled={currentPage === 1}
           className="px-6 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+          onClick={() => {
+            if (currentPage > 1) {
+              setCurrentPage((pages) => pages - 1);
+            }
+          }}
+          disabled={currentPage == 1}
         >
           Previous
         </button>
-        <span className="text-white/80">
-          Page {currentPage} of {totalPages}
-        </span>
+        <span className="text-white/80">Page {currentPage} of 10</span>
         <button
-          onClick={() =>
-            setCurrentPage((prev) => Math.min(prev + 1, totalPages))
-          }
-          disabled={currentPage === totalPages}
           className="px-6 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+          onClick={() => {
+            if (currentPage < 10) {
+              setCurrentPage((pages) => pages + 1);
+            }
+          }}
+          disabled={currentPage == 10}
         >
           Next
         </button>
