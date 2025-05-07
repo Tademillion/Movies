@@ -12,6 +12,7 @@ import TopMovies from "./components/TopMovies";
 import TrendingMovies from "./components/TrendingMovies";
 import UpcomingMovies from "./components/UpcomingMovies";
 import PopularPeople from "./components/PopularPeople";
+import PeoplePage from "./components/people/PeoplePage";
 
 function App() {
   const [genre, setGenre] = useState<number | null>(null);
@@ -64,7 +65,8 @@ function App() {
                     <MoviesPage genre_id={genre} sortedBy={MoviesSortedby} />
                   }
                 />
-                <Route path="/people" element={<PeopleGrid />} />
+                {/* <Route path="/people" element={<PeopleGrid />} /> */}
+                <Route path="/people" element={<PeoplePage />} />
                 <Route
                   path="/tv-shows"
                   element={
