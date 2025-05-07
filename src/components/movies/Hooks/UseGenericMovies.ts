@@ -5,7 +5,7 @@ import { AxiosRequestConfig } from "axios";
 import { FetchRespone } from "../../UseData";
 
 const UseGenericMovies=<T extends Record<string, any>>( endpoint:string,  {genre_id,sortedBy}: GenreProps,requestConfig?:AxiosRequestConfig,Deps?:any[])=>{
-const [movies, setMovies] = useState<T[]>([]);
+const [data, setMovies] = useState<T[]>([]);
 // extends Record<string, any> the key must be string and value is any
     const [isLoading, setIsLoading] = useState(false);
     const [Error, setError] = useState<any >(null);
@@ -37,6 +37,6 @@ const [movies, setMovies] = useState<T[]>([]);
             setIsLoading(false);
           });
       }, Deps?[...Deps]: []);
-       return {movies,isLoading,Error} 
+       return { data,isLoading,Error} 
 }
  export default UseGenericMovies

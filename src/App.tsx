@@ -8,6 +8,8 @@ import ListsPage from "./components/lists/ListsPage";
 import MoviesPage from "./components/movies/MoviesPage";
 import PeopleGrid from "./components/people/grid/PeopleGrid";
 import TVShowsPage from "./components/tv/TVShowsPage";
+import TopMovies from "./components/TopMovies";
+
 function App() {
   const [genre, setGenre] = useState<number | null>(null);
   const [tvcategory, setTvCategory] = useState<string | null>(null);
@@ -70,6 +72,7 @@ function App() {
                   }
                 />
                 <Route path="/lists" element={<ListsPage />} />
+                <Route path="/top250" element={<TopMovies />} />
                 <Route path="*" element={<ErrorPage errorType="404" />} />
               </Routes>
             </div>
