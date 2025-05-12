@@ -20,7 +20,6 @@ function App() {
   const [MoviesSortedby, setMoviesSortedby] = useState<string | null>(null);
   const [active, setActiveTab] = useState("Movies");
   const [sidetab, setSideTab] = useState("Movies");
-
   return (
     <Router>
       <div className="min-h-screen flex flex-col bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
@@ -58,6 +57,7 @@ function App() {
                     <MoviesPage sortedBy={MoviesSortedby} genre_id={genre} />
                   }
                 />
+
                 <Route
                   path="/movies"
                   element={
